@@ -39,7 +39,7 @@ public class ADE_XJC {
 	@Option(name="-output", usage="output folder (optional, default='src-gen')", metaVar="<folderName>")
 	private File outputFolder = new File("src-gen");
 	
-	@Option(name="-non-strict", usage="allow changes to contents of subfolder 'schema'.\n(optional)")
+	@Option(name="-non-strict", usage="allow changes to contents of subfolder 'schema'\n(optional)")
 	private boolean nonStrict = false;
 
 	@Option(name="-clean", usage="clean output folder")

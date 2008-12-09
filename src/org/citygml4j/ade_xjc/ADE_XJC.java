@@ -30,16 +30,16 @@ public class ADE_XJC {
 	@Option(name="-schema", usage="XML schema file of the ADE (required)", metaVar="<fileName>")
 	private File adeSchemaFile = null;
 
-	@Option(name="-package", usage="package for the ADE classes (optional, default=\"ade\")", metaVar="<packageName>")
+	@Option(name="-package", usage="package for the ADE classes (optional, default='ade')", metaVar="<packageName>")
 	private String packageName = "ade";
 
 	@Option(name="-binding", usage="JAXB binding file for ADE schema (optional)", metaVar="<fileName>")
 	private File adeBindingFile = null;
 	
-	@Option(name="-output", usage="output folder (optional, default=\"src-gen\")", metaVar="<folderName>")
+	@Option(name="-output", usage="output folder (optional, default='src-gen')", metaVar="<folderName>")
 	private File outputFolder = new File("src-gen");
 	
-	@Option(name="-non-strict", usage="allow changes to schemas, bindings, etc. (optional)")
+	@Option(name="-non-strict", usage="allow changes to contents of subfolder 'schema'.\n(optional)")
 	private boolean nonStrict = false;
 
 	@Option(name="-clean", usage="clean output folder")

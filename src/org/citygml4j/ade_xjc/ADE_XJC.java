@@ -84,6 +84,12 @@ public class ADE_XJC {
 			System.exit(1);
 		}
 
+		if (packageName.startsWith("org.citygml4j")) {
+			LOG.error("The package " + packageName + " is not allowed for the ADE classes");
+			LOG.error("Choose a package which is not a subpackage of org.citygml4j. Exiting.");
+			System.exit(1);
+		}
+		
 		LOG.info("Starting ade-xjc compiler");
 		int status = 0;
 		
@@ -96,12 +102,6 @@ public class ADE_XJC {
 
 			LOG.info("Checking build environment");
 			checkBuildEnvironment();	
-
-			if (packageName.startsWith("org.citygml4j")) {
-				LOG.error("The package " + packageName + " is not allowed for the ADE classes");
-				LOG.error("Choose a package which is not a subpackage of org.citygml4j. Exiting.");
-				System.exit(1);
-			}
 
 			LOG.info("Using ADE schema " + adeSchemaFile.getAbsolutePath());
 			if (adeBindingFile != null)

@@ -157,6 +157,9 @@ public class ADE_XJC {
 			
 			LOG.error("Unable to recover from previous error(s). Aborting.");
 			status = 1;
+			
+			if (clean)
+				Util.rmdir(outputFolder);
 		} finally {
 			cleanBuildEnvironment();
 		}

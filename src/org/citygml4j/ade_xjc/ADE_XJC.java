@@ -99,14 +99,14 @@ public class ADE_XJC {
 		int status = 0;
 		
 		try {
+			LOG.info("Checking build environment");
+			checkBuildEnvironment();
+			
 			LOG.info("Setting up build environment");
 			if (clean)
 				Util.rmdir(outputFolder);
 				
 			createBuildEnvironment();
-
-			LOG.info("Checking build environment");
-			checkBuildEnvironment();	
 
 			if (packageName.startsWith("org.citygml4j")) {
 				LOG.error("The package " + packageName + " is not allowed for the ADE classes");

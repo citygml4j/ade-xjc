@@ -77,7 +77,7 @@ public class ADE_XJC {
 		}
 
 		if (version) {
-			System.out.println("ade-xjc version \"0.1.0\"");
+			System.out.println("ade-xjc version \"0.2.0\"");
 			System.out.println("ade-xjc is a JAXB xjc wrapper built for citygml4j version \"0.2.0\"");
 			System.exit(0);
 		}
@@ -119,6 +119,7 @@ public class ADE_XJC {
 			if (adeBindingFile != null)
 				LOG.info("Using JAXB binding " + adeBindingFile.getCanonicalFile());
 			
+			LOG.info("Using Java package " + packageName + " for JAXB classes");
 			LOG.info("Generating JAXB classes. This may take some time...");
 			
 			SchemaCompiler sc = XJC.createSchemaCompiler();
@@ -189,7 +190,7 @@ public class ADE_XJC {
 			throw new FileNotFoundException("Could not open folder " + schema_dir.getAbsolutePath());
 
 		if (!nonStrict) {
-			LOG.info("Running in strict mode. Checking sanity of subfolder 'schema'");
+			LOG.info("Running in strict mode. Checking sanity of subfolder 'schemas'");
 			
 			BigInteger md5 = new BigInteger("0");
 			File[] children = schema_dir.listFiles();
@@ -200,7 +201,7 @@ public class ADE_XJC {
 					md5 = Util.file2md5(file.getAbsolutePath(), md5);
 			
 			if (!md5.toString(16).equals("b51bc6a36f36e2bac8c8674f1cb69042"))
-				throw new Exception("Contents of subfolder 'schema' have been altered. Please restore its original state.");
+				throw new Exception("Contents of subfolder 'schemas' have been altered. Please restore its original state.");
 		}
 		
 		if (!adeSchemaFile.exists() || !adeSchemaFile.isFile() || !adeSchemaFile.canRead())

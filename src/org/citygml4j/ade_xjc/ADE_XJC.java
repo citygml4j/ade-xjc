@@ -23,7 +23,7 @@ public class ADE_XJC {
 	private static final Logger LOG = Logger.getInstance();
 
 	// some dirs we will need
-	private File schema_dir = new File("schema");
+	private File schema_dir = new File("schemas");
 
 	// some files we will need
 	private File baseProfileFile = new File(schema_dir.getAbsoluteFile() + "/CityGML/citygml4j_profile.xsd");
@@ -99,12 +99,13 @@ public class ADE_XJC {
 		int status = 0;
 		
 		try {
-			LOG.info("Checking build environment");
+			LOG.info("Setting up build environment");
 			checkBuildEnvironment();
 			
-			LOG.info("Setting up build environment");
-			if (clean)
+			if (clean) {
+				LOG.info("Cleaning output folder");
 				Util.rmdir(outputFolder);
+			}
 				
 			createBuildEnvironment();
 
@@ -114,9 +115,9 @@ public class ADE_XJC {
 				System.exit(1);
 			}
 			
-			LOG.info("Using ADE schema " + adeSchemaFile.getAbsolutePath());
+			LOG.info("Using ADE schema " + adeSchemaFile.getCanonicalFile());
 			if (adeBindingFile != null)
-				LOG.info("Using JAXB binding " + adeBindingFile.getAbsolutePath());
+				LOG.info("Using JAXB binding " + adeBindingFile.getCanonicalFile());
 			
 			LOG.info("Generating JAXB classes. This may take some time...");
 			
@@ -150,7 +151,7 @@ public class ADE_XJC {
 			code.build(outputFolder, (PrintStream)null);
 
 			File packageDir = new File(outputFolder.getAbsolutePath());
-			LOG.info("JAXB classes successfully written to " + packageDir.getAbsolutePath());	
+			LOG.info("JAXB classes successfully written to " + packageDir.getCanonicalPath());	
 		} catch (Exception e) {
 			if (e.getMessage() != null)
 				LOG.error(e.getMessage());

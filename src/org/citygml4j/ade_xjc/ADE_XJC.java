@@ -77,8 +77,8 @@ public class ADE_XJC {
 		}
 
 		if (version) {
-			System.out.println("ade-xjc version \"0.2.0\"");
-			System.out.println("ade-xjc is a JAXB xjc wrapper built for citygml4j version \"0.2.0\"");
+			System.out.println("ade-xjc version \"0.2.1\"");
+			System.out.println("ade-xjc is a JAXB xjc wrapper built for citygml4j version \"0.2.1\"");
 			System.exit(0);
 		}
 

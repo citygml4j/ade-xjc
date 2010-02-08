@@ -5,7 +5,7 @@
     <property name="app.name" value="ade-xjc"/>
     <property name="app.version" value="1.0ea"/>
     <property name="app.jar" value="${app.name}-${app.version}.jar"/>
-    <property name="app.title" value="JAXB xjc wrapper for citygml4j ${app.version}"/>
+    <property name="app.title" value="JAXB xjc wrapper for citygml4j version ${app.version}"/>
     <property name="app.vendor" value="IGG, Technical University Berlin, Germany, http://www.igg.tu-berlin.de"/>
 	<property name="app.class" value="org.citygml4j.ade_xjc.ADE_XJC"/>
 	
@@ -17,16 +17,16 @@
     <property name="resources" location="resources"/>
 	<property name="resources.doc" location="${resources}/doc"/>
     <property name="resources.license" location="${resources}/license"/>
-	<property name="resources.schemas" location="${resources}/xml/schemas"/>
+	<property name="resources.schemas" location="${resources}/schemas"/>
 	
 	<property name="build" location="build"/>
     <property name="build.classes" location="${build}/classes"/>
 	<property name="build.lib" location="${build}/lib"/>
-	<property name="build.schemas" location="${build.classes}/schemas"/>
 	
     <property name="dist" location="${app.name}-${app.version}"/>
 	<property name="dist.lib" location="${dist}/lib"/>
 	<property name="dist.license" location="${dist}/license"/>
+	<property name="dist.schemas" location="${dist}/schemas"/>
 		
     <!-- classpath -->
     <path id="classpath">
@@ -82,7 +82,7 @@
     	<replace file="${dist}/README" token="!app.version!" value="${app.version}"/>
 
     	<!-- copy schema files -->
-    	<copy todir="${build.schemas}">
+    	<copy todir="${dist.schemas}">
     		<fileset dir="${resources.schemas}" includes="**/*"/>
     	</copy>
     	

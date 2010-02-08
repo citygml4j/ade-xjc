@@ -3,7 +3,7 @@ package org.citygml4j.ade_xjc;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
-import java.net.URL;
+import java.math.BigInteger;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,9 +22,12 @@ import com.sun.tools.xjc.api.XJC;
 public class ADE_XJC {
 	private static final Logger LOG = Logger.getInstance();
 
+	// some dirs we will need
+	private File schema_dir = new File("schemas");
+
 	// some files we will need
-	private URL baseProfileFile = ADE_XJC.class.getResource("/schemas/CityGML/citygml4j_profile.xsd");
-	private URL bindingFile = ADE_XJC.class.getResource("/schemas/CityGML/binding.xjb");
+	private File baseProfileFile = new File(schema_dir.getAbsoluteFile() + "/CityGML/citygml4j_profile.xsd");
+	private File bindingFile = new File(schema_dir.getAbsoluteFile() + "/CityGML/binding.xjb");
 	private File adeSchemaFile = null;
 	
 	// args
@@ -74,8 +77,8 @@ public class ADE_XJC {
 		}
 
 		if (version) {
-			System.out.println("ade-xjc version \"0.2.1\"");
-			System.out.println("ade-xjc is a JAXB xjc wrapper built for citygml4j version \"0.2.1\"");
+			System.out.println("ade-xjc version " + this.getClass().getPackage().getImplementationVersion());
+			System.out.println(this.getClass().getPackage().getImplementationTitle());
 			System.exit(0);
 		}
 
@@ -97,7 +100,7 @@ public class ADE_XJC {
 		
 		try {
 			LOG.info("Setting up build environment");
-			//checkBuildEnvironment();
+			checkBuildEnvironment();
 			
 			if (clean) {
 				LOG.info("Cleaning output folder");
@@ -121,17 +124,16 @@ public class ADE_XJC {
 			
 			SchemaCompiler sc = XJC.createSchemaCompiler();
 			sc.setDefaultPackageName(packageName);
-			sc.setEntityResolver(new XJCEntityResolver());
 
 			XJCErrorListener listener = new XJCErrorListener();
 			sc.setErrorListener(listener);
 
-			sc.parseSchema(new InputSource(baseProfileFile.toString()));
-			sc.parseSchema(new InputSource(bindingFile.toString()));
-			sc.parseSchema(new InputSource(adeSchemaFile.getAbsolutePath()));
+			sc.parseSchema(new InputSource(baseProfileFile.toURI().toString()));
+			sc.parseSchema(new InputSource(bindingFile.toURI().toString()));
+			sc.parseSchema(new InputSource(adeSchemaFile.toURI().toString()));
 
 			if (adeBindingFile != null)
-				sc.parseSchema(new InputSource(adeBindingFile.getAbsolutePath()));
+				sc.parseSchema(new InputSource(adeBindingFile.toURI().toString()));
 			
 			S2JJAXBModel model = sc.bind();
 			JCodeModel code = model.generateCode(null, listener);
@@ -172,7 +174,7 @@ public class ADE_XJC {
 	}
 
 	private void checkBuildEnvironment() throws Exception, FileNotFoundException, NoSuchAlgorithmException {
-		/*if (!schema_dir.exists())
+		if (!schema_dir.exists())
 			throw new FileNotFoundException("Could not open folder " + schema_dir.getAbsolutePath());
 
 		if (!nonStrict) {
@@ -186,7 +188,7 @@ public class ADE_XJC {
 				else 
 					md5 = Util.file2md5(file.getAbsolutePath(), md5);
 			
-			if (!md5.toString(16).equals("b51bc6a36f36e2bac8c8674f1cb69042"))
+			if (!md5.toString(16).equals("38f087a5dcf0ea2fbbe2a2769abbbc3b"))
 				throw new Exception("Contents of subfolder 'schemas' have been altered. Please restore its original state.");
 		}
 		
@@ -195,7 +197,6 @@ public class ADE_XJC {
 		
 		if (adeBindingFile != null && (!adeBindingFile.exists() || !adeBindingFile.isFile() || !adeBindingFile.canRead()))
 			throw new Exception("Could not open ADE binding file " + adeBindingFile.getAbsolutePath());
-			*/	
 	}
 
 	private void cleanBuildEnvironment() {

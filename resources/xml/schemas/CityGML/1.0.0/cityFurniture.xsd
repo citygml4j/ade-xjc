@@ -5,7 +5,8 @@
 <!-- Prof. Dr. Thomas H. Kolbe, Institute for Geodesy and Geoinformation Science, Technical University of Berlin -->
 <!-- For further information see: www.citygml.org -->
 <!-- For the history of changes and additions to this CityGML schema see file history.txt -->
-<xs:schema xmlns="http://www.opengis.net/citygml/cityfurniture/1.0" xmlns:core="http://www.opengis.net/citygml/1.0"
+<xs:schema jaxb:version="2.1" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+    xmlns="http://www.opengis.net/citygml/cityfurniture/1.0" xmlns:core="http://www.opengis.net/citygml/1.0"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml"
     targetNamespace="http://www.opengis.net/citygml/cityfurniture/1.0" elementFormDefault="qualified"
     attributeFormDefault="unqualified">
@@ -45,7 +46,13 @@
     <!-- ========================================================================================= -->
     <xs:element name="CityFurniture" type="CityFurnitureType" substitutionGroup="core:_CityObject"/>
     <!-- ========================================================================================= -->
-    <xs:element name="_GenericApplicationPropertyOfCityFurniture" type="xs:anyType" abstract="true"/>
+    <xs:element name="_GenericApplicationPropertyOfCityFurniture" type="xs:anyType" abstract="true">
+        <xs:annotation>
+            <xs:appinfo>
+                <jaxb:dom/>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
     <!-- ========================================================================================= -->
     <xs:simpleType name="CityFurnitureFunctionType">
         <xs:annotation>

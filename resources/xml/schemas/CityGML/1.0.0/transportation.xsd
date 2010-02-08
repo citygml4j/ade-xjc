@@ -5,7 +5,8 @@
 <!-- Prof. Dr. Thomas H. Kolbe, Institute for Geodesy and Geoinformation Science, Technical University of Berlin -->
 <!-- For further information see: www.citygml.org -->
 <!-- For the history of changes and additions to this CityGML schema see file history.txt -->
-<xs:schema xmlns="http://www.opengis.net/citygml/transportation/1.0" xmlns:core="http://www.opengis.net/citygml/1.0"
+<xs:schema jaxb:version="2.1" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+    xmlns="http://www.opengis.net/citygml/transportation/1.0" xmlns:core="http://www.opengis.net/citygml/1.0"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml"
     targetNamespace="http://www.opengis.net/citygml/transportation/1.0" elementFormDefault="qualified"
     attributeFormDefault="unqualified">
@@ -29,7 +30,13 @@
     <!-- ========================================================================================= -->
     <xs:element name="_TransportationObject" type="AbstractTransportationObjectType" substitutionGroup="core:_CityObject"/>
     <!-- ========================================================================================= -->
-    <xs:element name="_GenericApplicationPropertyOfTransportationObject" type="xs:anyType" abstract="true"/>
+    <xs:element name="_GenericApplicationPropertyOfTransportationObject" type="xs:anyType" abstract="true">
+        <xs:annotation>
+            <xs:appinfo>
+                <jaxb:dom/>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
     <!-- ========================================================================================= -->
     <xs:complexType name="TransportationComplexType">
         <xs:annotation>
@@ -59,7 +66,13 @@
     <!-- ========================================================================================= -->
     <xs:element name="TransportationComplex" type="TransportationComplexType" substitutionGroup="_TransportationObject"/>
     <!-- ========================================================================================= -->
-    <xs:element name="_GenericApplicationPropertyOfTransportationComplex" type="xs:anyType" abstract="true"/>
+    <xs:element name="_GenericApplicationPropertyOfTransportationComplex" type="xs:anyType" abstract="true">
+        <xs:annotation>
+            <xs:appinfo>
+                <jaxb:dom/>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
     <!-- ========================================================================================= -->
     <xs:complexType name="TrafficAreaType">
         <xs:annotation>
@@ -84,7 +97,13 @@
     <!-- ========================================================================================= -->
     <xs:element name="TrafficArea" type="TrafficAreaType" substitutionGroup="_TransportationObject"/>
     <!-- ========================================================================================= -->
-    <xs:element name="_GenericApplicationPropertyOfTrafficArea" type="xs:anyType" abstract="true"/>
+    <xs:element name="_GenericApplicationPropertyOfTrafficArea" type="xs:anyType" abstract="true">
+        <xs:annotation>
+            <xs:appinfo>
+                <jaxb:dom/>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
     <!-- ========================================================================================= -->
     <xs:complexType name="AuxiliaryTrafficAreaType">
         <xs:annotation>
@@ -109,7 +128,13 @@
     <!-- ========================================================================================= -->
     <xs:element name="AuxiliaryTrafficArea" type="AuxiliaryTrafficAreaType" substitutionGroup="_TransportationObject"/>
     <!-- ========================================================================================= -->
-    <xs:element name="_GenericApplicationPropertyOfAuxiliaryTrafficArea" type="xs:anyType" abstract="true"/>
+    <xs:element name="_GenericApplicationPropertyOfAuxiliaryTrafficArea" type="xs:anyType" abstract="true">
+        <xs:annotation>
+            <xs:appinfo>
+                <jaxb:dom/>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
     <!-- ========================================================================================= -->
     <xs:complexType name="TrafficAreaPropertyType">
         <xs:annotation>
@@ -160,7 +185,13 @@
     <!-- ========================================================================================= -->
     <xs:element name="Track" type="TrackType" substitutionGroup="TransportationComplex"/>
     <!-- ========================================================================================= -->
-    <xs:element name="_GenericApplicationPropertyOfTrack" type="xs:anyType" abstract="true"/>
+    <xs:element name="_GenericApplicationPropertyOfTrack" type="xs:anyType" abstract="true">
+        <xs:annotation>
+            <xs:appinfo>
+                <jaxb:dom/>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
     <!-- ========================================================================================= -->
     <xs:complexType name="RoadType">
         <xs:annotation>
@@ -178,7 +209,13 @@
     <!-- ========================================================================================= -->
     <xs:element name="Road" type="RoadType" substitutionGroup="TransportationComplex"/>
     <!-- ========================================================================================= -->
-    <xs:element name="_GenericApplicationPropertyOfRoad" type="xs:anyType" abstract="true"/>
+    <xs:element name="_GenericApplicationPropertyOfRoad" type="xs:anyType" abstract="true">
+        <xs:annotation>
+            <xs:appinfo>
+                <jaxb:dom/>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
     <!-- ========================================================================================= -->
     <xs:complexType name="RailwayType">
         <xs:annotation>
@@ -197,7 +234,13 @@
     <!-- ========================================================================================= -->
     <xs:element name="Railway" type="RailwayType" substitutionGroup="TransportationComplex"/>
     <!-- ========================================================================================= -->
-    <xs:element name="_GenericApplicationPropertyOfRailway" type="xs:anyType" abstract="true"/>
+    <xs:element name="_GenericApplicationPropertyOfRailway" type="xs:anyType" abstract="true">
+        <xs:annotation>
+            <xs:appinfo>
+                <jaxb:dom/>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
     <!-- ========================================================================================= -->
     <xs:complexType name="SquareType">
         <xs:annotation>
@@ -216,7 +259,13 @@
     <!-- ========================================================================================= -->
     <xs:element name="Square" type="SquareType" substitutionGroup="TransportationComplex"/>
     <!-- ========================================================================================= -->
-    <xs:element name="_GenericApplicationPropertyOfSquare" type="xs:anyType" abstract="true"/>
+    <xs:element name="_GenericApplicationPropertyOfSquare" type="xs:anyType" abstract="true">
+        <xs:annotation>
+            <xs:appinfo>
+                <jaxb:dom/>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
     <!-- ========================================================================================= -->
     <xs:simpleType name="TransportationComplexFunctionType">
         <xs:annotation>

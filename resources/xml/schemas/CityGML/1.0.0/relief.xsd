@@ -5,9 +5,10 @@
 <!-- Prof. Dr. Thomas H. Kolbe, Institute for Geodesy and Geoinformation Science, Technical University of Berlin -->
 <!-- For further information see: www.citygml.org -->
 <!-- For the history of changes and additions to this CityGML schema see file history.txt -->
-<xs:schema xmlns="http://www.opengis.net/citygml/relief/1.0" xmlns:core="http://www.opengis.net/citygml/1.0"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml"
-    targetNamespace="http://www.opengis.net/citygml/relief/1.0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+<xs:schema jaxb:version="2.1" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns="http://www.opengis.net/citygml/relief/1.0"
+    xmlns:core="http://www.opengis.net/citygml/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:gml="http://www.opengis.net/gml" targetNamespace="http://www.opengis.net/citygml/relief/1.0"
+    elementFormDefault="qualified" attributeFormDefault="unqualified">
     <xs:import namespace="http://www.opengis.net/gml" schemaLocation="../../GML/3.1.1/base/gml.xsd"/>
     <xs:import namespace="http://www.opengis.net/citygml/1.0" schemaLocation="cityGMLBase.xsd"/>
     <!-- ========================================================================================= -->
@@ -32,7 +33,13 @@
     <!-- ========================================================================================= -->
     <xs:element name="ReliefFeature" type="ReliefFeatureType" substitutionGroup="core:_CityObject"/>
     <!-- ========================================================================================= -->
-    <xs:element name="_GenericApplicationPropertyOfReliefFeature" type="xs:anyType" abstract="true"/>
+    <xs:element name="_GenericApplicationPropertyOfReliefFeature" type="xs:anyType" abstract="true">
+        <xs:annotation>
+            <xs:appinfo>
+                <jaxb:dom/>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
     <!-- ========================================================================================= -->
     <xs:complexType name="AbstractReliefComponentType" abstract="true">
         <xs:annotation>
@@ -53,7 +60,13 @@
     <!-- ========================================================================================= -->
     <xs:element name="_ReliefComponent" type="AbstractReliefComponentType" abstract="true" substitutionGroup="core:_CityObject"/>
     <!-- ========================================================================================= -->
-    <xs:element name="_GenericApplicationPropertyOfReliefComponent" type="xs:anyType" abstract="true"/>
+    <xs:element name="_GenericApplicationPropertyOfReliefComponent" type="xs:anyType" abstract="true">
+        <xs:annotation>
+            <xs:appinfo>
+                <jaxb:dom/>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
     <!-- ========================================================================================= -->
     <xs:complexType name="ReliefComponentPropertyType">
         <xs:annotation>
@@ -88,7 +101,13 @@
     <!-- ========================================================================================= -->
     <xs:element name="TINRelief" type="TINReliefType" substitutionGroup="_ReliefComponent"/>
     <!-- ========================================================================================= -->
-    <xs:element name="_GenericApplicationPropertyOfTinRelief" type="xs:anyType" abstract="true"/>
+    <xs:element name="_GenericApplicationPropertyOfTinRelief" type="xs:anyType" abstract="true">
+        <xs:annotation>
+            <xs:appinfo>
+                <jaxb:dom/>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
     <!-- ========================================================================================= -->
     <xs:complexType name="RasterReliefType">
         <xs:annotation>
@@ -108,7 +127,13 @@
     <!-- ========================================================================================= -->
     <xs:element name="RasterRelief" type="RasterReliefType" substitutionGroup="_ReliefComponent"/>
     <!-- ========================================================================================= -->
-    <xs:element name="_GenericApplicationPropertyOfRasterRelief" type="xs:anyType" abstract="true"/>
+    <xs:element name="_GenericApplicationPropertyOfRasterRelief" type="xs:anyType" abstract="true">
+        <xs:annotation>
+            <xs:appinfo>
+                <jaxb:dom/>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
     <!-- ========================================================================================= -->
     <xs:complexType name="MassPointReliefType">
         <xs:annotation>
@@ -128,7 +153,13 @@
     <!-- ========================================================================================= -->
     <xs:element name="MassPointRelief" type="MassPointReliefType" substitutionGroup="_ReliefComponent"/>
     <!-- ========================================================================================= -->
-    <xs:element name="_GenericApplicationPropertyOfMassPointRelief" type="xs:anyType" abstract="true"/>
+    <xs:element name="_GenericApplicationPropertyOfMassPointRelief" type="xs:anyType" abstract="true">
+        <xs:annotation>
+            <xs:appinfo>
+                <jaxb:dom/>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
     <!-- ========================================================================================= -->
     <xs:complexType name="BreaklineReliefType">
         <xs:annotation>
@@ -149,7 +180,13 @@
     <!-- ========================================================================================= -->
     <xs:element name="BreaklineRelief" type="BreaklineReliefType" substitutionGroup="_ReliefComponent"/>
     <!-- ========================================================================================= -->
-    <xs:element name="_GenericApplicationPropertyOfBreaklineRelief" type="xs:anyType" abstract="true"/>
+    <xs:element name="_GenericApplicationPropertyOfBreaklineRelief" type="xs:anyType" abstract="true">
+        <xs:annotation>
+            <xs:appinfo>
+                <jaxb:dom/>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
     <!-- ========================================================================================= -->
     <xs:complexType name="tinPropertyType">
         <xs:annotation>

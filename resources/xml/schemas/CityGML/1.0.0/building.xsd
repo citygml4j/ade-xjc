@@ -5,10 +5,10 @@
 <!-- Prof. Dr. Thomas H. Kolbe, Institute for Geodesy and Geoinformation Science, Technical University of Berlin -->
 <!-- For further information see: www.citygml.org -->
 <!-- For the history of changes and additions to this CityGML schema see file history.txt -->
-<xs:schema xmlns="http://www.opengis.net/citygml/building/1.0" xmlns:core="http://www.opengis.net/citygml/1.0"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml"
-    targetNamespace="http://www.opengis.net/citygml/building/1.0" elementFormDefault="qualified"
-    attributeFormDefault="unqualified">
+<xs:schema jaxb:version="2.1" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns="http://www.opengis.net/citygml/building/1.0"
+    xmlns:core="http://www.opengis.net/citygml/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:gml="http://www.opengis.net/gml" targetNamespace="http://www.opengis.net/citygml/building/1.0"
+    elementFormDefault="qualified" attributeFormDefault="unqualified">
     <xs:import namespace="http://www.opengis.net/gml" schemaLocation="../../GML/3.1.1/base/gml.xsd"/>
     <xs:import namespace="http://www.opengis.net/citygml/1.0" schemaLocation="cityGMLBase.xsd"/>
     <!-- ========================================================================================= -->
@@ -78,7 +78,13 @@
     <!-- ========================================================================================= -->
     <xs:element name="_AbstractBuilding" type="AbstractBuildingType" abstract="true" substitutionGroup="core:_Site"/>
     <!-- ========================================================================================= -->
-    <xs:element name="_GenericApplicationPropertyOfAbstractBuilding" type="xs:anyType" abstract="true"/>
+    <xs:element name="_GenericApplicationPropertyOfAbstractBuilding" type="xs:anyType" abstract="true">
+        <xs:annotation>
+            <xs:appinfo>
+                <jaxb:dom/>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
     <!-- ========================================================================================= -->
     <xs:simpleType name="BuildingClassType">
         <xs:annotation>
@@ -126,7 +132,13 @@
     <!-- ========================================================================================= -->
     <xs:element name="Building" type="BuildingType" substitutionGroup="_AbstractBuilding"/>
     <!-- ========================================================================================= -->
-    <xs:element name="_GenericApplicationPropertyOfBuilding" type="xs:anyType" abstract="true"/>
+    <xs:element name="_GenericApplicationPropertyOfBuilding" type="xs:anyType" abstract="true">
+        <xs:annotation>
+            <xs:appinfo>
+                <jaxb:dom/>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
     <!-- ========================================================================================= -->
     <xs:complexType name="BuildingPartType">
         <xs:complexContent>
@@ -140,7 +152,13 @@
     <!-- ========================================================================================= -->
     <xs:element name="BuildingPart" type="BuildingPartType" substitutionGroup="_AbstractBuilding"/>
     <!-- ========================================================================================= -->
-    <xs:element name="_GenericApplicationPropertyOfBuildingPart" type="xs:anyType" abstract="true"/>
+    <xs:element name="_GenericApplicationPropertyOfBuildingPart" type="xs:anyType" abstract="true">
+        <xs:annotation>
+            <xs:appinfo>
+                <jaxb:dom/>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
     <!-- ========================================================================================= -->
     <xs:complexType name="BuildingPartPropertyType">
         <xs:annotation>
@@ -181,7 +199,13 @@
     <!-- ========================================================================================= -->
     <xs:element name="BuildingInstallation" type="BuildingInstallationType" substitutionGroup="core:_CityObject"/>
     <!-- ========================================================================================= -->
-    <xs:element name="_GenericApplicationPropertyOfBuildingInstallation" type="xs:anyType" abstract="true"/>
+    <xs:element name="_GenericApplicationPropertyOfBuildingInstallation" type="xs:anyType" abstract="true">
+        <xs:annotation>
+            <xs:appinfo>
+                <jaxb:dom/>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
     <!-- ========================================================================================= -->
     <xs:simpleType name="BuildingInstallationClassType">
         <xs:annotation>
@@ -244,7 +268,13 @@
     <!-- ========================================================================================= -->
     <xs:element name="IntBuildingInstallation" type="IntBuildingInstallationType" substitutionGroup="core:_CityObject"/>
     <!-- ========================================================================================= -->
-    <xs:element name="_GenericApplicationPropertyOfIntBuildingInstallation" type="xs:anyType" abstract="true"/>
+    <xs:element name="_GenericApplicationPropertyOfIntBuildingInstallation" type="xs:anyType" abstract="true">
+        <xs:annotation>
+            <xs:appinfo>
+                <jaxb:dom/>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
     <!-- ========================================================================================= -->
     <xs:simpleType name="IntBuildingInstallationClassType">
         <xs:annotation>
@@ -309,7 +339,13 @@
     <!-- ========================================================================================== -->
     <xs:element name="_BoundarySurface" type="AbstractBoundarySurfaceType" abstract="true" substitutionGroup="core:_CityObject"/>
     <!-- ========================================================================================== -->
-    <xs:element name="_GenericApplicationPropertyOfBoundarySurface" type="xs:anyType" abstract="true"/>
+    <xs:element name="_GenericApplicationPropertyOfBoundarySurface" type="xs:anyType" abstract="true">
+        <xs:annotation>
+            <xs:appinfo>
+                <jaxb:dom/>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
     <!-- ========================================================================================== -->
     <xs:complexType name="RoofSurfaceType">
         <xs:complexContent>
@@ -323,7 +359,13 @@
     <!-- ========================================================================================== -->
     <xs:element name="RoofSurface" type="RoofSurfaceType" substitutionGroup="_BoundarySurface"/>
     <!-- ========================================================================================== -->
-    <xs:element name="_GenericApplicationPropertyOfRoofSurface" type="xs:anyType" abstract="true"/>
+    <xs:element name="_GenericApplicationPropertyOfRoofSurface" type="xs:anyType" abstract="true">
+        <xs:annotation>
+            <xs:appinfo>
+                <jaxb:dom/>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
     <!-- ========================================================================================== -->
     <xs:complexType name="WallSurfaceType">
         <xs:complexContent>
@@ -337,7 +379,13 @@
     <!-- ========================================================================================= -->
     <xs:element name="WallSurface" type="WallSurfaceType" substitutionGroup="_BoundarySurface"/>
     <!-- ========================================================================================= -->
-    <xs:element name="_GenericApplicationPropertyOfWallSurface" type="xs:anyType" abstract="true"/>
+    <xs:element name="_GenericApplicationPropertyOfWallSurface" type="xs:anyType" abstract="true">
+        <xs:annotation>
+            <xs:appinfo>
+                <jaxb:dom/>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
     <!-- ========================================================================================= -->
     <xs:complexType name="GroundSurfaceType">
         <xs:complexContent>
@@ -351,7 +399,13 @@
     <!-- ========================================================================================= -->
     <xs:element name="GroundSurface" type="GroundSurfaceType" substitutionGroup="_BoundarySurface"/>
     <!-- ========================================================================================= -->
-    <xs:element name="_GenericApplicationPropertyOfGroundSurface" type="xs:anyType" abstract="true"/>
+    <xs:element name="_GenericApplicationPropertyOfGroundSurface" type="xs:anyType" abstract="true">
+        <xs:annotation>
+            <xs:appinfo>
+                <jaxb:dom/>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
     <!-- ========================================================================================= -->
     <xs:complexType name="ClosureSurfaceType">
         <xs:complexContent>
@@ -365,7 +419,13 @@
     <!-- ========================================================================================= -->
     <xs:element name="ClosureSurface" type="ClosureSurfaceType" substitutionGroup="_BoundarySurface"/>
     <!-- ========================================================================================= -->
-    <xs:element name="_GenericApplicationPropertyOfClosureSurface" type="xs:anyType" abstract="true"/>
+    <xs:element name="_GenericApplicationPropertyOfClosureSurface" type="xs:anyType" abstract="true">
+        <xs:annotation>
+            <xs:appinfo>
+                <jaxb:dom/>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
     <!-- ========================================================================================= -->
     <!-- ===================================LOD4 only Surfaces======================================= -->
     <!-- ========================================================================================= -->
@@ -381,7 +441,13 @@
     <!-- ========================================================================================= -->
     <xs:element name="FloorSurface" type="FloorSurfaceType" substitutionGroup="_BoundarySurface"/>
     <!-- ========================================================================================= -->
-    <xs:element name="_GenericApplicationPropertyOfFloorSurface" type="xs:anyType" abstract="true"/>
+    <xs:element name="_GenericApplicationPropertyOfFloorSurface" type="xs:anyType" abstract="true">
+        <xs:annotation>
+            <xs:appinfo>
+                <jaxb:dom/>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
     <!-- ========================================================================================= -->
     <xs:complexType name="InteriorWallSurfaceType">
         <xs:complexContent>
@@ -395,7 +461,13 @@
     <!-- ========================================================================================= -->
     <xs:element name="InteriorWallSurface" type="InteriorWallSurfaceType" substitutionGroup="_BoundarySurface"/>
     <!-- ========================================================================================= -->
-    <xs:element name="_GenericApplicationPropertyOfInteriorWallSurface" type="xs:anyType" abstract="true"/>
+    <xs:element name="_GenericApplicationPropertyOfInteriorWallSurface" type="xs:anyType" abstract="true">
+        <xs:annotation>
+            <xs:appinfo>
+                <jaxb:dom/>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
     <!-- ========================================================================================= -->
     <xs:complexType name="CeilingSurfaceType">
         <xs:complexContent>
@@ -409,7 +481,13 @@
     <!-- ========================================================================================= -->
     <xs:element name="CeilingSurface" type="CeilingSurfaceType" substitutionGroup="_BoundarySurface"/>
     <!-- ========================================================================================= -->
-    <xs:element name="_GenericApplicationPropertyOfCeilingSurface" type="xs:anyType" abstract="true"/>
+    <xs:element name="_GenericApplicationPropertyOfCeilingSurface" type="xs:anyType" abstract="true">
+        <xs:annotation>
+            <xs:appinfo>
+                <jaxb:dom/>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
     <!-- ========================================================================================= -->
     <!-- =============================Relation of Buildings/Rooms to its bounding Surfaces================== -->
     <!-- ========================================================================================= -->
@@ -467,7 +545,13 @@
     <!-- ========================================================================================= -->
     <xs:element name="_Opening" type="AbstractOpeningType" abstract="true" substitutionGroup="core:_CityObject"/>
     <!-- ========================================================================================= -->
-    <xs:element name="_GenericApplicationPropertyOfOpening" type="xs:anyType" abstract="true"/>
+    <xs:element name="_GenericApplicationPropertyOfOpening" type="xs:anyType" abstract="true">
+        <xs:annotation>
+            <xs:appinfo>
+                <jaxb:dom/>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
     <!-- ========================================================================================= -->
     <xs:complexType name="WindowType">
         <xs:annotation>
@@ -486,7 +570,13 @@
     <!-- ========================================================================================= -->
     <xs:element name="Window" type="WindowType" substitutionGroup="_Opening"/>
     <!-- ========================================================================================= -->
-    <xs:element name="_GenericApplicationPropertyOfWindow" type="xs:anyType" abstract="true"/>
+    <xs:element name="_GenericApplicationPropertyOfWindow" type="xs:anyType" abstract="true">
+        <xs:annotation>
+            <xs:appinfo>
+                <jaxb:dom/>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
     <!-- ========================================================================================= -->
     <xs:complexType name="DoorType">
         <xs:annotation>
@@ -506,7 +596,13 @@
     <!-- ========================================================================================= -->
     <xs:element name="Door" type="DoorType" substitutionGroup="_Opening"/>
     <!-- ========================================================================================= -->
-    <xs:element name="_GenericApplicationPropertyOfDoor" type="xs:anyType" abstract="true"/>
+    <xs:element name="_GenericApplicationPropertyOfDoor" type="xs:anyType" abstract="true">
+        <xs:annotation>
+            <xs:appinfo>
+                <jaxb:dom/>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
     <!-- ========================================================================================= -->
     <!-- ====================================ROOMS (LOD4 only)===================================== -->
     <!-- ========================================================================================= -->
@@ -540,7 +636,13 @@
     <!-- ========================================================================================= -->
     <xs:element name="Room" type="RoomType" substitutionGroup="core:_CityObject"/>
     <!-- ========================================================================================= -->
-    <xs:element name="_GenericApplicationPropertyOfRoom" type="xs:anyType" abstract="true"/>
+    <xs:element name="_GenericApplicationPropertyOfRoom" type="xs:anyType" abstract="true">
+        <xs:annotation>
+            <xs:appinfo>
+                <jaxb:dom/>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
     <!-- ========================================================================================= -->
     <xs:simpleType name="RoomClassType">
         <xs:annotation>
@@ -588,7 +690,13 @@
     <!-- ========================================================================================= -->
     <xs:element name="BuildingFurniture" type="BuildingFurnitureType" substitutionGroup="core:_CityObject"/>
     <!-- ========================================================================================= -->
-    <xs:element name="_GenericApplicationPropertyOfBuildingFurniture" type="xs:anyType" abstract="true"/>
+    <xs:element name="_GenericApplicationPropertyOfBuildingFurniture" type="xs:anyType" abstract="true">
+        <xs:annotation>
+            <xs:appinfo>
+                <jaxb:dom/>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
     <!-- ========================================================================================= -->
     <xs:simpleType name="BuildingFurnitureClassType">
         <xs:annotation>

@@ -66,8 +66,7 @@
         <xs:attribute name="name" type="xs:string" use="required"/>
     </xs:complexType>
     <!-- ========================================================================================= -->
-    <xs:element name="_genericAttribute" type="AbstractGenericAttributeType" abstract="true"
-        substitutionGroup="core:_GenericApplicationPropertyOfCityObject"/>
+    <xs:element name="_genericAttribute" type="AbstractGenericAttributeType" abstract="true"/>
     <!-- ========================================================================================= -->
     <xs:complexType name="StringAttributeType">
         <xs:annotation>

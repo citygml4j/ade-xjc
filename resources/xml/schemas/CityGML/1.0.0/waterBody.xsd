@@ -5,10 +5,10 @@
 <!-- Prof. Dr. Thomas H. Kolbe, Institute for Geodesy and Geoinformation Science, Technical University of Berlin -->
 <!-- For further information see: www.citygml.org -->
 <!-- For the history of changes and additions to this CityGML schema see file history.txt -->
-<xs:schema xmlns="http://www.opengis.net/citygml/waterbody/1.0" xmlns:core="http://www.opengis.net/citygml/1.0"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml"
-    targetNamespace="http://www.opengis.net/citygml/waterbody/1.0" elementFormDefault="qualified"
-    attributeFormDefault="unqualified">
+<xs:schema jaxb:version="2.1" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns="http://www.opengis.net/citygml/waterbody/1.0"
+    xmlns:core="http://www.opengis.net/citygml/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:gml="http://www.opengis.net/gml" targetNamespace="http://www.opengis.net/citygml/waterbody/1.0"
+    elementFormDefault="qualified" attributeFormDefault="unqualified">
     <xs:import namespace="http://www.opengis.net/gml" schemaLocation="../../GML/3.1.1/base/gml.xsd"/>
     <xs:import namespace="http://www.opengis.net/citygml/1.0" schemaLocation="cityGMLBase.xsd"/>
     <!-- ========================================================================================= -->
@@ -31,7 +31,13 @@
     <!-- ========================================================================================= -->
     <xs:element name="_WaterObject" type="AbstractWaterObjectType" substitutionGroup="core:_CityObject"/>
     <!-- ========================================================================================= -->
-    <xs:element name="_GenericApplicationPropertyOfWaterObject" type="xs:anyType" abstract="true"/>
+    <xs:element name="_GenericApplicationPropertyOfWaterObject" type="xs:anyType" abstract="true">
+        <xs:annotation>
+            <xs:appinfo>
+                <jaxb:dom/>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
     <!-- ========================================================================================= -->
     <xs:complexType name="WaterBodyType">
         <xs:annotation>
@@ -62,7 +68,13 @@
     <!-- ========================================================================================= -->
     <xs:element name="WaterBody" type="WaterBodyType" substitutionGroup="_WaterObject"/>
     <!-- ========================================================================================= -->
-    <xs:element name="_GenericApplicationPropertyOfWaterBody" type="xs:anyType" abstract="true"/>
+    <xs:element name="_GenericApplicationPropertyOfWaterBody" type="xs:anyType" abstract="true">
+        <xs:annotation>
+            <xs:appinfo>
+                <jaxb:dom/>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
     <!-- ========================================================================================= -->
     <xs:simpleType name="WaterBodyClassType">
         <xs:annotation>
@@ -124,7 +136,13 @@
     <xs:element name="_WaterBoundarySurface" type="AbstractWaterBoundarySurfaceType" abstract="true"
         substitutionGroup="core:_CityObject"/>
     <!-- ========================================================================================= -->
-    <xs:element name="_GenericApplicationPropertyOfWaterBoundarySurface" type="xs:anyType" abstract="true"/>
+    <xs:element name="_GenericApplicationPropertyOfWaterBoundarySurface" type="xs:anyType" abstract="true">
+        <xs:annotation>
+            <xs:appinfo>
+                <jaxb:dom/>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
     <!-- ========================================================================================= -->
     <xs:simpleType name="WaterLevelType">
         <xs:annotation>
@@ -154,7 +172,13 @@
     <!-- ========================================================================================= -->
     <xs:element name="WaterSurface" type="WaterSurfaceType" substitutionGroup="_WaterBoundarySurface"/>
     <!-- ========================================================================================= -->
-    <xs:element name="_GenericApplicationPropertyOfWaterSurface" type="xs:anyType" abstract="true"/>
+    <xs:element name="_GenericApplicationPropertyOfWaterSurface" type="xs:anyType" abstract="true">
+        <xs:annotation>
+            <xs:appinfo>
+                <jaxb:dom/>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
     <!-- ========================================================================================= -->
     <xs:complexType name="WaterGroundSurfaceType">
         <xs:annotation>
@@ -173,7 +197,13 @@
     <!-- ========================================================================================= -->
     <xs:element name="WaterGroundSurface" type="WaterGroundSurfaceType" substitutionGroup="_WaterBoundarySurface"/>
     <!-- ========================================================================================= -->
-    <xs:element name="_GenericApplicationPropertyOfWaterGroundSurface" type="xs:anyType" abstract="true"/>
+    <xs:element name="_GenericApplicationPropertyOfWaterGroundSurface" type="xs:anyType" abstract="true">
+        <xs:annotation>
+            <xs:appinfo>
+                <jaxb:dom/>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
     <!-- ========================================================================================= -->
     <xs:complexType name="WaterClosureSurfaceType">
         <xs:annotation>
@@ -192,6 +222,12 @@
     <!-- ========================================================================================= -->
     <xs:element name="WaterClosureSurface" type="WaterClosureSurfaceType" substitutionGroup="_WaterBoundarySurface"/>
     <!-- ========================================================================================= -->
-    <xs:element name="_GenericApplicationPropertyOfWaterClosureSurface" type="xs:anyType" abstract="true"/>
+    <xs:element name="_GenericApplicationPropertyOfWaterClosureSurface" type="xs:anyType" abstract="true">
+        <xs:annotation>
+            <xs:appinfo>
+                <jaxb:dom/>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
     <!-- ========================================================================================= -->
 </xs:schema>

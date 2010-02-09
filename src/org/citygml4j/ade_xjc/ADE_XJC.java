@@ -187,8 +187,8 @@ public class ADE_XJC {
 					md5 = Util.dir2md5(file, md5);
 				else 
 					md5 = Util.file2md5(file.getAbsolutePath(), md5);
-			
-			if (!md5.toString(16).equals("38f087a5dcf0ea2fbbe2a2769abbbc3b"))
+
+			if (!md5.toString(16).equals("315eb0d921d7e9cf24bef9da5d509900"))
 				throw new Exception("Contents of subfolder 'schemas' have been altered. Please restore its original state.");
 		}
 		

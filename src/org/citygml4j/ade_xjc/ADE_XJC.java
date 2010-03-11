@@ -89,7 +89,7 @@ public class ADE_XJC {
 		}
 		
 		if (adeSchemaFileList.size() > 1) {
-			System.out.println("Only provide one ADE XML Schema definition file at a time");
+			System.out.println("Just provide one ADE XML Schema definition file at a time");
 			printUsage(parser, System.out);
 			System.exit(1);
 		}
@@ -124,7 +124,7 @@ public class ADE_XJC {
 			
 			SchemaCompiler sc = XJC.createSchemaCompiler();
 			sc.setDefaultPackageName(packageName);
-
+			
 			XJCErrorListener listener = new XJCErrorListener();
 			sc.setErrorListener(listener);
 
@@ -181,14 +181,9 @@ public class ADE_XJC {
 			LOG.info("Running in strict mode. Checking sanity of subfolder 'schemas'");
 			
 			BigInteger md5 = new BigInteger("0");
-			File[] children = schema_dir.listFiles();
-			for (File file : children)
-				if (file.isDirectory())
-					md5 = Util.dir2md5(file, md5);
-				else 
-					md5 = Util.file2md5(file.getAbsolutePath(), md5);
-
-			if (!md5.toString(16).equals("315eb0d921d7e9cf24bef9da5d509900"))
+			md5 = Util.dir2md5(schema_dir, md5);
+			
+			if (!md5.toString(16).equals("a5c49adbabbe2885412a10a9d590622"))
 				throw new Exception("Contents of subfolder 'schemas' have been altered. Please restore its original state.");
 		}
 		

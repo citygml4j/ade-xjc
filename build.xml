@@ -1,118 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="citygml4j" default="dist" basedir=".">
 
-    <!-- application specific variables -->
-    <property name="app.name" value="ade-xjc"/>
-    <property name="app.version" value="1.0ea"/>
-    <property name="app.jar" value="${app.name}-${app.version}.jar"/>
-    <property name="app.title" value="JAXB xjc wrapper for citygml4j version ${app.version}"/>
-    <property name="app.vendor" value="IGG, Technical University Berlin, Germany, http://www.igg.tu-berlin.de"/>
-	<property name="app.class" value="org.citygml4j.ade_xjc.ADE_XJC"/>
-	
-    <!-- dirs -->
-    <property name="project.basedir" location=".."/>
-    <property name="src" location="src"/>
-	<property name="lib" location="lib"/>
-	<property name="schemas" location="schemas"/>
-	
-    <property name="resources" location="resources"/>
-	<property name="resources.doc" location="${resources}/doc"/>
-    <property name="resources.license" location="${resources}/license"/>
-	
-	<property name="build" location="build"/>
-    <property name="build.classes" location="${build}/classes"/>
-	<property name="build.lib" location="${build}/lib"/>
-	
-    <property name="dist" location="${app.name}-${app.version}"/>
-	<property name="dist.lib" location="${dist}/lib"/>
-	<property name="dist.license" location="${dist}/license"/>
-	<property name="dist.schemas" location="${dist}/schemas"/>
-		
-    <!-- classpath -->
-    <path id="classpath">
-        <fileset dir="lib" includes="*.jar"/>
-    </path>
-   	
-    <tstamp>
-        <format property="TODAY" pattern="yyyy-MM-dd HH:mm:ss"/>
-    </tstamp>
+	<!-- application specific variables -->
+	<property name="app.name" value="ade-xjc" />
+	<property name="app.version" value="1.0ea" />
+	<property name="app.jar" value="${app.name}-${app.version}.jar" />
+	<property name="app.title" value="JAXB xjc wrapper for citygml4j version ${app.version}" />
+	<property name="app.vendor" value="IGG, Technical University Berlin, Germany, http://www.igg.tu-berlin.de" />
+	<property name="app.class" value="org.citygml4j.ade_xjc.ADE_XJC" />
 
-    <target name="clean" description="clean up">
-        <!-- delete the ${build} and ${dist} directory trees -->
-        <delete dir="${build}"/>
-        <delete dir="${dist}"/>
-    </target>
+	<!-- dirs -->
+	<property name="project.basedir" location=".." />
+	<property name="src" location="src" />
+	<property name="lib" location="lib" />
 
-    <target name="init" description="init build environment">
-        <!-- create the build directory structure used by compile -->
-        <mkdir dir="${build.classes}"/>
-    	<mkdir dir="${build.lib}"/>
-    </target>
+	<property name="resources" location="resources" />
+	<property name="resources.doc" location="${resources}/doc" />
+	<property name="resources.license" location="${resources}/license" />
+	<property name="resources.schemas" location="${resources}/xml/schemas" />
 
-    <target name="compile" depends="init" description="compile the source">
-        <!-- compile the java code from ${src} and ${src-gen} into ${build} -->
-        <javac classpathref="classpath" srcdir="${src}" destdir="${build.classes}"/>
-    	
-    	<!-- copy libraries to ${build} -->
-    	<copy todir="${build.lib}">
-    		<fileset dir="${lib}" includes="**/*.jar"/>
-    	</copy>
-    </target>
+	<property name="build" location="build" />
+	<property name="build.classes" location="${build}/classes" />
 
-    <target name="dist" depends="clean, compile" description="generate the distribution">
-        <!-- create the distribution directory -->
-        <mkdir dir="${dist}"/>
+	<property name="dist" location="${app.name}-${app.version}" />
+	<property name="dist.license" location="${dist}/license" />
+	<property name="dist.schemas" location="${dist}/schemas" />
 
-    	<!-- copy LICENSE template -->
-    	<copy todir="${dist.license}">
-    		<fileset dir="${resources.license}" includes="**/*"/>
-    	</copy>
+	<!-- classpath -->
+	<path id="classpath">
+		<fileset dir="lib" includes="*.jar" />
+	</path>
 
-    	<!-- copy starter script and README templates -->
-    	<copy toDir="${dist}">
-    		<fileset dir="${resources.doc}" includes="**/*"/>
+	<tstamp>
+		<format property="TODAY" pattern="yyyy-MM-dd HH:mm:ss" />
+	</tstamp>
+
+	<target name="clean" description="clean up">
+		<!-- delete the ${build} and ${dist} directory trees -->
+		<delete dir="${build}" />
+		<delete dir="${dist}" />
+	</target>
+
+	<target name="init" description="init build environment">
+		<!-- create the build directory structure used by compile -->
+		<mkdir dir="${build.classes}" />
+	</target>
+
+	<target name="compile" depends="init" description="compile the source">
+		<!-- compile the java code from ${src} and ${src-gen} into ${build} -->
+		<javac classpathref="classpath" srcdir="${src}" destdir="${build.classes}" />
+	</target>
+
+	<target name="dist" depends="clean, compile" description="generate the distribution">
+		<!-- create the distribution directory -->
+		<mkdir dir="${dist}" />
+
+		<!-- copy LICENSE template -->
+		<copy todir="${dist.license}">
+			<fileset dir="${resources.license}" includes="**/*" />
 		</copy>
 
-    	<!-- replace tokens in template files -->
-		<replace file="${dist.license}/LICENSE" token="!app.title!" value="${app.title}"/>
-    	<replace file="${dist.license}/LICENSE" token="!app.name!" value="${app.name}"/>
-    	<replace file="${dist}/README" token="!app.name!" value="${app.name}"/>
-    	<replace file="${dist}/README" token="!app.title!" value="${app.title}"/>
-    	<replace file="${dist}/README" token="!app.jar!" value="${app.jar}"/>
-    	<replace file="${dist}/README" token="!app.version!" value="${app.version}"/>
+		<!-- copy README template -->
+		<copy toDir="${dist}">
+			<fileset dir="${resources.doc}" includes="**/*" />
+		</copy>
 
-    	<!-- copy schema files -->
-    	<copy todir="${dist.schemas}">
-    		<fileset dir="${schemas}" includes="**/*"/>
-    	</copy>
-    	
-    	<!-- copy library files -->
-    	<copy todir="${dist.lib}">
-   			<fileset dir="${build.lib}" includes="**/*.jar"/>
-   		</copy>
-    	
-        <!-- set package variables -->
-        <pathconvert property="manifest.classpath" dirsep="/" pathsep=" " refid="classpath">
-            <map from="${basedir}${file.separator}lib" to="lib"/>
-        </pathconvert>
-        <buildnumber file="build.num"/>
+		<!-- replace tokens in template files -->
+		<replace file="${dist.license}/LICENSE" token="!app.title!" value="${app.title}" />
+		<replace file="${dist.license}/LICENSE" token="!app.name!" value="${app.name}" />
+		<replace file="${dist}/README" token="!app.name!" value="${app.name}" />
+		<replace file="${dist}/README" token="!app.title!" value="${app.title}" />
+		<replace file="${dist}/README" token="!app.jar!" value="${app.jar}" />
+		<replace file="${dist}/README" token="!app.version!" value="${app.version}" />
 
-        <!-- put everything in ${build} into .jar file -->
-        <jar jarfile="${dist}/${app.jar}" basedir="${build}/classes">
-        	<fileset dir="${dist}" includes="README"/>
-			<fileset dir="${dist.license}" includes="**/*"/>
-            <manifest>
-                <attribute name="Built-Id" value="${user.name}-${app.name}-${app.version}"/>
-                <attribute name="Built-Date" value="${TODAY}"/>
-                <attribute name="Implementation-Title" value="${app.title}"/>
-                <attribute name="Implementation-Version" value="${app.version}-b${build.number}"/>
-                <attribute name="Implementation-Vendor" value="${app.vendor}"/>
-                <attribute name="Class-Path" value="${manifest.classpath}"/>
-            	<attribute name="Main-Class" value="${app.class}"/>
-            </manifest>
-        </jar>
+		<!-- copy schema files -->
+		<copy todir="${dist.schemas}">
+			<fileset dir="${resources.schemas}" includes="**/*" />
+		</copy>
 
-        <!-- clean up template dir -->
-        <delete dir="${dist.tmp}"/>
-    </target>
+		<!-- put everything in ${build} into .jar file -->
+		<jar jarfile="${dist}/${app.jar}" basedir="${build.classes}" filesetmanifest="mergewithoutmain">
+			<manifest>
+				<attribute name="Built-Id" value="${user.name}-${app.name}-${app.version}" />
+				<attribute name="Built-Date" value="${TODAY}" />
+				<attribute name="Implementation-Title" value="${app.title}" />
+				<attribute name="Implementation-Version" value="${app.version}-b${build.number}" />
+				<attribute name="Implementation-Vendor" value="${app.vendor}" />
+				<attribute name="Class-Path" value="." />
+				<attribute name="Main-Class" value="${app.class}" />
+			</manifest>
+			<zipfileset excludes="META-INF/*.SF" src="${lib}/activation.jar" />
+			<zipfileset excludes="META-INF/*.SF" src="${lib}/jaxb-api.jar" />
+			<zipfileset excludes="META-INF/*.SF" src="${lib}/jsr173_1.0_api.jar" />
+			<zipfileset excludes="META-INF/*.SF" src="${lib}/jaxb-impl.jar" />
+			<zipfileset excludes="META-INF/*.SF" src="${lib}/jaxb-xjc.jar" />
+			<zipfileset excludes="META-INF/*.SF" src="${lib}/args4j-2.0.9.jar" />
+			<fileset dir="${dist}" includes="README" />
+			<fileset dir="${dist.license}" includes="**/*" />
+		</jar>
+
+		<!-- clean up template dir -->
+		<delete dir="${build}" />
+	</target>
 </project>

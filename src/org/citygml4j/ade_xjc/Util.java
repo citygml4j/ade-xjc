@@ -1,6 +1,7 @@
 package org.citygml4j.ade_xjc;
 
 import java.io.File;
+import java.io.FileFilter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -15,9 +16,23 @@ public class Util {
 		md5 = string2md5(file.getName(), md5);
 		
 		if (file.isDirectory()) {
-			File[] children = file.listFiles();
+			File[] children = file.listFiles(new FileFilter() {
+				
+				@Override
+				public boolean accept(File pathname) {
+					if (pathname.isDirectory())
+						return true;
+					
+					if (pathname.getName().endsWith("xsd") || pathname.getName().endsWith("xjb"))
+						return true;
+					
+					return false;
+				}
+			});
+			
 			for (File next : children)
 				md5 = dir2md5(next, md5);
+			
 		} else
 			md5 = file2md5(file.getAbsolutePath(), md5);
 		

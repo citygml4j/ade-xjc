@@ -5,7 +5,10 @@ import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.math.BigInteger;
 import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import org.kohsuke.args4j.Argument;
@@ -20,7 +23,7 @@ import com.sun.tools.xjc.api.SchemaCompiler;
 import com.sun.tools.xjc.api.XJC;
 
 public class ADE_XJC {
-	private static final Logger LOG = Logger.getInstance();
+	private SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss"); 
 
 	// some dirs we will need
 	private File schema_dir = new File("schemas");
@@ -63,8 +66,16 @@ public class ADE_XJC {
 		CmdLineParser parser = new CmdLineParser(this);
 		parser.setUsageWidth(80);
 
+		List<String> tmp = new ArrayList<String>();
+		for (String arg : args)
+			tmp.addAll(Arrays.asList(arg.split(" +")));
+		
+		String[] newArgs = new String[tmp.size()];
+		for (int i = 0; i < tmp.size(); i++)
+			newArgs[i] = tmp.get(i);
+		
 		try {
-			parser.parseArgument(args);			
+			parser.parseArgument(newArgs);			
 		} catch (CmdLineException e) {
 			System.err.println(e.getMessage());
 			printUsage(parser, System.err);
@@ -94,33 +105,33 @@ public class ADE_XJC {
 			System.exit(1);
 		}
 					
-		LOG.info("Starting ade-xjc compiler");
+		log(LogLevel.INFO, "Starting ade-xjc compiler");
 		adeSchemaFile = new File(adeSchemaFileList.get(0));
 		int status = 0;
 		
 		try {
-			LOG.info("Setting up build environment");
+			log(LogLevel.INFO, "Setting up build environment");
 			checkBuildEnvironment();
 			
 			if (clean) {
-				LOG.info("Cleaning output folder");
+				log(LogLevel.INFO, "Cleaning output folder");
 				Util.rmdir(outputFolder);
 			}
 				
 			createBuildEnvironment();
 
 			if (packageName.startsWith("org.citygml4j")) {
-				LOG.error("The package " + packageName + " is not allowed for the ADE classes");
-				LOG.error("Choose a package which is not a subpackage of org.citygml4j. Aborting.");
+				log(LogLevel.ERROR, "The package " + packageName + " is not allowed for the ADE classes");
+				log(LogLevel.ERROR, "Choose a package which is not a subpackage of org.citygml4j. Aborting.");
 				System.exit(1);
 			}
 			
-			LOG.info("Using ADE schema " + adeSchemaFile.getCanonicalFile());
+			log(LogLevel.INFO, "Using ADE schema " + adeSchemaFile.getCanonicalFile());
 			if (adeBindingFile != null)
-				LOG.info("Using JAXB binding " + adeBindingFile.getCanonicalFile());
+				log(LogLevel.INFO, "Using JAXB binding " + adeBindingFile.getCanonicalFile());
 			
-			LOG.info("Using Java package " + packageName + " for JAXB classes");
-			LOG.info("Generating JAXB classes. This may take some time...");
+			log(LogLevel.INFO, "Using Java package " + packageName + " for JAXB classes");
+			log(LogLevel.INFO, "Generating JAXB classes. This may take some time...");
 			
 			SchemaCompiler sc = XJC.createSchemaCompiler();
 			sc.setDefaultPackageName(packageName);
@@ -140,12 +151,12 @@ public class ADE_XJC {
 			code.build(outputFolder, (PrintStream)null);
 
 			File packageDir = new File(outputFolder.getAbsolutePath());
-			LOG.info("JAXB classes successfully written to " + packageDir.getCanonicalPath());	
+			log(LogLevel.INFO, "JAXB classes successfully written to " + packageDir.getCanonicalPath());	
 		} catch (Exception e) {
 			if (e.getMessage() != null)
-				LOG.error(e.getMessage());
+				log(LogLevel.ERROR, e.getMessage());
 			
-			LOG.error("Unable to recover from previous error(s). Aborting.");
+			log(LogLevel.ERROR, "Unable to recover from previous error(s). Aborting.");
 			status = 1;
 			
 			if (clean)
@@ -178,7 +189,7 @@ public class ADE_XJC {
 			throw new FileNotFoundException("Could not open folder " + schema_dir.getAbsolutePath());
 
 		if (!nonStrict) {
-			LOG.info("Running in strict mode. Checking sanity of subfolder 'schemas'");
+			log(LogLevel.INFO, "Running in strict mode. Checking sanity of subfolder 'schemas'");
 			
 			BigInteger md5 = new BigInteger("0");
 			md5 = Util.dir2md5(schema_dir, md5);
@@ -208,4 +219,33 @@ public class ADE_XJC {
 		parser.printUsage(System.out);
 		out.println();
 	}
+	
+	private void log(LogLevel level, String msg) {
+		StringBuilder builder = new StringBuilder();
+		builder.append("[")
+		.append(df.format(new Date()))
+		.append(" ")
+		.append(level.toString())
+		.append("] ")
+		.append(msg);
+		
+		System.out.println(builder.toString());
+	}
+	
+	private enum LogLevel {
+		INFO("info"),
+		WARN("warn"),
+		ERROR("error");
+		
+		private String value;
+		
+		LogLevel(String value) {
+			this.value = value;
+		}
+		
+		public String toString() {
+			return value;
+		}
+	}
+	
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="citygml4j" default="dist" basedir=".">
+<project name="ade-xjc" default="dist" basedir=".">
 
 	<!-- application specific variables -->
 	<property name="app.name" value="ade-xjc" />
@@ -13,11 +13,13 @@
 	<property name="project.basedir" location=".." />
 	<property name="src" location="src" />
 	<property name="lib" location="lib" />
+	<property name="schemas" location="schemas" />
+
+	<property name="sample" location="sample" />
 
 	<property name="resources" location="resources" />
 	<property name="resources.doc" location="${resources}/doc" />
 	<property name="resources.license" location="${resources}/license" />
-	<property name="resources.schemas" location="${resources}/xml/schemas" />
 
 	<property name="build" location="build" />
 	<property name="build.classes" location="${build}/classes" />
@@ -25,6 +27,7 @@
 	<property name="dist" location="${app.name}-${app.version}" />
 	<property name="dist.license" location="${dist}/license" />
 	<property name="dist.schemas" location="${dist}/schemas" />
+	<property name="dist.sample" location="${dist}/sample" />
 
 	<!-- classpath -->
 	<path id="classpath">
@@ -38,21 +41,23 @@
 	<target name="clean" description="clean up">
 		<!-- delete the ${build} and ${dist} directory trees -->
 		<delete dir="${build}" />
+		<delete dir="${dist.license}" />
+		<delete dir="${dist.schemas}" />
+		<delete dir="${dist.sample}" />
 		<delete dir="${dist}" />
 	</target>
 
-	<target name="init" description="init build environment">
-		<!-- create the build directory structure used by compile -->
+	<target name="compile" description="compile the source">
+		<delete dir="${build}" />
 		<mkdir dir="${build.classes}" />
-	</target>
-
-	<target name="compile" depends="init" description="compile the source">
+		
 		<!-- compile the java code from ${src} and ${src-gen} into ${build} -->
 		<javac classpathref="classpath" srcdir="${src}" destdir="${build.classes}" />
 	</target>
 
 	<target name="dist" depends="clean, compile" description="generate the distribution">
 		<!-- create the distribution directory -->
+		<delete dir="${dist}" />
 		<mkdir dir="${dist}" />
 
 		<!-- copy LICENSE template -->
@@ -65,6 +70,11 @@
 			<fileset dir="${resources.doc}" includes="**/*" />
 		</copy>
 
+		<!-- copy sample -->
+		<copy todir="${dist.sample}">
+			<fileset dir="${sample}" includes="**/*" />
+		</copy>
+
 		<!-- replace tokens in template files -->
 		<replace file="${dist.license}/LICENSE" token="!app.title!" value="${app.title}" />
 		<replace file="${dist.license}/LICENSE" token="!app.name!" value="${app.name}" />
@@ -72,11 +82,14 @@
 		<replace file="${dist}/README" token="!app.title!" value="${app.title}" />
 		<replace file="${dist}/README" token="!app.jar!" value="${app.jar}" />
 		<replace file="${dist}/README" token="!app.version!" value="${app.version}" />
+		<replace file="${dist.sample}/build.xml" token="!app.jar!" value="${app.jar}" />
 
 		<!-- copy schema files -->
 		<copy todir="${dist.schemas}">
-			<fileset dir="${resources.schemas}" includes="**/*" />
+			<fileset dir="${schemas}" includes="**/*" />
 		</copy>
+		
+		<buildnumber file="build.num"/>
 
 		<!-- put everything in ${build} into .jar file -->
 		<jar jarfile="${dist}/${app.jar}" basedir="${build.classes}" filesetmanifest="mergewithoutmain">

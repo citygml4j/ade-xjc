@@ -1,6 +1,6 @@
 !app.name! v!app.version! - !app.title!
 
-  This library is free software and comes WITHOUT ANY WARRANTY. 
+  This program is free software and comes WITHOUT ANY WARRANTY. 
   See the file LICENSE for more details. 
 
 
@@ -20,7 +20,7 @@
 1. Licence
 ----------
 
-The !app.name! Java class library is free software under
+The !app.name! is free software under
 the GNU Lesser General Public License Version 3.0. See the file LICENSE 
 for more details. For a copy of the GNU Lesser General Public License see 
 the files COPYING and COPYING.LESSER or visit http://www.gnu.org/licenses/.
@@ -38,47 +38,43 @@ http://www.igg.tu-berlin.de/
 3. About
 --------
 
-!app.name! is a Java class library and API for facilitating work with the
-City Geography Markup Language (CityGML). It makes it easy to read, process,
-and write CityGML datasets, and to develop CityGML-aware software 
-applications.
-
-Feature list:
-* Full support for CityGML version 1.0.0 and 0.4.0
-* Support for CityGML specific subset of GML 3.1.1
-* Support for the eXtensible Address Language (xAL)
-* Support for user-defined CityGML Application Domain Extensions (ADE)
-
-CityGML is a common information model for the representation of 3D urban 
-objects. It is realized as an open data model and XML-based format for the 
-storage and exchange of virtual 3D city models. 
-
-CityGML is implemented as an application schema for the Geography Markup 
-Language version 3.1.1 (GML3), the extendible international standard for 
-spatial data exchange issued by the Open Geospatial Consortium (OGC) and 
-the ISO TC211. CityGML is an official OGC standard and can be used 
-free of charge.
+"!app.name!" is a command line tool and a wrapper for the XML Schema compiler
+"xjc" shipped with JAXB. !app.name! compiles an arbitrary CityGML ADE Schema 
+to a set of corresponding JAXB classes. The resulting classes are automatically
+derived from the JAXB classes shipped with citygml4j. Thus, the classes can 
+easily be used with the citygml4j library. However, this also requires the 
+citygml4j library on your classpath in order to use the compiled classes in
+your application.
 
 
 4. System requirements
 ----------------------
 
 * Java JRE or JDK >= 1.5
-* Java Architecture for XML Binding (JAXB) >= 2.1.10
+* citygml4j library version !app.version!
 
 
 5. How to use it
 ----------------
 
-Simply modify your Java classpath to include the provided 
-!app.jar! file. Please make sure also to include the 
-required JAXB libraries on your application classpath. 
+!app.name! is a command line tool. In order to get a list of supported 
+arguments, invoke the tool in a shell environment like this:
+
+  > java -jar !app.jar! -help
+
+The !app.name! compiler requires your ADE schema to point to the official
+CityGML and GML schemas provided in the subfolder "schemas". So please 
+adapt all <xs:import> statements in your ADE schema accordingly before 
+invoking the !app.name! compiler!
+
+Please find a sample ADE schema together with an ANT build file in the
+subfolder "sample".
 
    
 6. Developers
 -------------
 
-Claus Nagel <nagel@igg.tu-berlin.de>
+Claus Nagel <claus.nagel@tu-berlin.de>
 
 
 7. Contact

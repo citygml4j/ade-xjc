@@ -16,9 +16,7 @@ public class Util {
 		md5 = string2md5(file.getName(), md5);
 		
 		if (file.isDirectory()) {
-			File[] children = file.listFiles(new FileFilter() {
-				
-				@Override
+			File[] children = file.listFiles(new FileFilter() {				
 				public boolean accept(File pathname) {
 					if (pathname.isDirectory())
 						return true;

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="run" basedir="..">
+
+	<property name="dir" value="sample" />
+	<property name="output" value="${dir}/src-gen" />
+	<property name="schema" value="${dir}/CityGML-SubsurfaceADE-0_9_0.xsd" />
+	<property name="binding" value="${dir}/binding.xjb" />
+	<property name="package" value="ade.sub.jaxb" />
+
+	<property name="arg" value="-clean -output ${output} -package ${package} -binding ${binding} ${schema}" />
+
+	<!-- run ade-xjc sample -->
+	<target name="run" description="sample">
+		<echo level="info" message="changing to base directory &quot;${basedir}&quot;" />
+		<echo level="info" message="invoking &quot;java -jar !app.jar! ${arg}&quot;" />
+		<echo />
+		<java jar="!app.jar!" fork="true">
+			<arg value="${arg}" />
+		</java>
+	</target>
+
+	<!-- clean up -->
+	<target name="clean" description="deletes all the generated artifacts">
+		<delete dir="${out}" />
+	</target>
+
+</project>

@@ -4,7 +4,7 @@
 	<!-- application specific variables -->
 	<property name="app.name" value="ade-xjc" />
 	<property name="app.version" value="1.0ea" />
-	<property name="app.jar" value="${app.name}-${app.version}.jar" />
+	<property name="app.jar" value="${app.name}.jar" />
 	<property name="app.title" value="JAXB xjc wrapper for citygml4j version ${app.version}" />
 	<property name="app.vendor" value="IGG, Technical University Berlin, Germany, http://www.igg.tu-berlin.de" />
 	<property name="app.class" value="org.citygml4j.ade_xjc.ADE_XJC" />
@@ -50,7 +50,7 @@
 	<target name="compile" description="compile the source">
 		<delete dir="${build}" />
 		<mkdir dir="${build.classes}" />
-		
+
 		<!-- compile the java code from ${src} and ${src-gen} into ${build} -->
 		<javac classpathref="classpath" srcdir="${src}" destdir="${build.classes}" />
 	</target>
@@ -88,8 +88,8 @@
 		<copy todir="${dist.schemas}">
 			<fileset dir="${schemas}" includes="**/*" />
 		</copy>
-		
-		<buildnumber file="build.num"/>
+
+		<buildnumber file="build.num" />
 
 		<!-- put everything in ${build} into .jar file -->
 		<jar jarfile="${dist}/${app.jar}" basedir="${build.classes}" filesetmanifest="mergewithoutmain">

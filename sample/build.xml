@@ -21,7 +21,7 @@
 
 	<!-- clean up -->
 	<target name="clean" description="deletes all the generated artifacts">
-		<delete dir="${out}" />
+		<delete dir="${output}" />
 	</target>
 
 </project>

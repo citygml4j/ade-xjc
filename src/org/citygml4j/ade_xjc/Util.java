@@ -13,7 +13,7 @@ import java.security.NoSuchAlgorithmException;
 public class Util {
 	
 	public static BigInteger dir2md5(File file, BigInteger md5) throws NoSuchAlgorithmException, FileNotFoundException {
-		md5 = string2md5(file.getName(), md5);
+		md5 = string2md5(file.getName(), md5); 
 		
 		if (file.isDirectory()) {
 			File[] children = file.listFiles(new FileFilter() {				

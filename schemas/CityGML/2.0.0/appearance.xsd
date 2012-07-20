@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- CityGML Version No. 1.0.0, May 19th, 2008-->
-<!-- CityGML - GML3 application schema for the 3D city model of the Special Interest Group 3D (SIG 3D) of GDI NRW-->
-<!-- Editors: PD Dr. Gerhard Groeger, Institute for Geodesy and Geoinformation, University of Bonn & -->
-<!-- Prof. Dr. Thomas H. Kolbe, Institute for Geodesy and Geoinformation Science, Technical University of Berlin -->
-<!-- For further information see: www.citygml.org -->
-<!-- For the history of changes and additions to this CityGML schema see file history.txt -->
-<xs:schema xmlns="http://www.opengis.net/citygml/appearance/1.0" xmlns:core="http://www.opengis.net/citygml/1.0"
+<!-- CityGML Version No. 2.0, February 2012 -->
+<!-- CityGML - GML 3.1.1 application schema for 3D city models -->
+<!-- International encoding standard of the Open Geospatial Consortium, see http://www.opengeospatial.org/standards/citygml -->
+<!-- Jointly developed by the Special Interest Group 3D (SIG 3D) of GDI-DE, see http://www.sig3d.org               -->
+<!-- For further information see: http://www.citygml.org -->
+<xs:schema xmlns="http://www.opengis.net/citygml/appearance/2.0" xmlns:core="http://www.opengis.net/citygml/2.0"
 	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml"
-	targetNamespace="http://www.opengis.net/citygml/appearance/1.0" elementFormDefault="qualified"
-	attributeFormDefault="unqualified">
+	targetNamespace="http://www.opengis.net/citygml/appearance/2.0" elementFormDefault="qualified"
+	attributeFormDefault="unqualified" version="2.0.0">
+	<xs:annotation>
+		<xs:documentation>
+    CityGML is an OGC Standard.
+    Copyright (c) 2012 Open Geospatial Consortium.
+    To obtain additional rights of use, visit http://www.opengeospatial.org/legal/ .
+		</xs:documentation>
+	</xs:annotation>
 	<xs:import namespace="http://www.opengis.net/gml" schemaLocation="../../GML/3.1.1/base/gml.xsd"/>
-	<xs:import namespace="http://www.opengis.net/citygml/1.0" schemaLocation="cityGMLBase.xsd"/>
+	<xs:import namespace="http://www.opengis.net/citygml/2.0" schemaLocation="cityGMLBase.xsd"/>
 	<!-- ========================================================================================= -->
 	<!-- ======================CityGML Appearance module ============================================ -->
 	<!-- ========================================================================================= -->
@@ -30,6 +36,8 @@
 		</xs:complexContent>
 	</xs:complexType>
 	<!-- ========================================================================================= -->
+	<xs:element name="Appearance" type="AppearanceType" substitutionGroup="gml:_Feature"/>
+	<!-- ========================================================================================= -->
 	<xs:element name="_GenericApplicationPropertyOfAppearance" type="xs:anyType" abstract="true"/>
 	<!-- ========================================================================================= -->
 	<xs:complexType name="AppearancePropertyType">
@@ -38,20 +46,18 @@
 				element must either carry a reference to a Appearance object or contain a Appearance object inline, but neither both nor
 				none.</xs:documentation>
 		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="gml:FeaturePropertyType">
-				<xs:sequence minOccurs="0">
-					<xs:element name="Appearance" type="AppearanceType"/>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
+		<xs:sequence minOccurs="0">
+			<xs:element ref="Appearance"/>
+			<xs:element ref="gml:_ADEComponent" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gml:AssociationAttributeGroup"/>
 	</xs:complexType>
 	<!-- ========================================================================================= -->
-	<xs:element name="appearanceMember" type="AppearancePropertyType" substitutionGroup="gml:featureMember"/>
+	<xs:element name="appearanceMember" type="gml:FeaturePropertyType" substitutionGroup="gml:featureMember"/>
 	<!-- ========================================================================================= -->
 	<xs:element name="appearance" type="AppearancePropertyType"/>
 	<!-- ========================================================================================= -->
-	<xs:complexType name="AbstractSurfaceDataType">
+	<xs:complexType name="AbstractSurfaceDataType" abstract="true">
 		<xs:annotation>
 			<xs:documentation>Base class for textures and material. Contains only isFront-flag.</xs:documentation>
 		</xs:annotation>
@@ -82,7 +88,7 @@
 		<xs:attributeGroup ref="gml:AssociationAttributeGroup"/>
 	</xs:complexType>
 	<!-- ========================================================================================= -->
-	<xs:complexType name="AbstractTextureType">
+	<xs:complexType name="AbstractTextureType" abstract="true">
 		<xs:annotation>
 			<xs:documentation>Base class for textures. "imageURI" can contain any valid URI from references to a local file to
 				preformatted web service requests. The linking to geometry and texture parameterization is provided by derived
@@ -92,7 +98,7 @@
 			<xs:extension base="AbstractSurfaceDataType">
 				<xs:sequence>
 					<xs:element name="imageURI" type="xs:anyURI"/>
-					<xs:element name="mimeType" type="core:MimeTypeType" minOccurs="0"/>
+					<xs:element name="mimeType" type="gml:CodeType" minOccurs="0"/>
 					<xs:element name="textureType" type="TextureTypeType" minOccurs="0"/>
 					<xs:element name="wrapMode" type="WrapModeType" minOccurs="0"/>
 					<xs:element name="borderColor" type="ColorPlusOpacity" minOccurs="0"/>

@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- CityGML Version No. 1.0.0, May 19th, 2008-->
-<!-- CityGML - GML3 application schema for the 3D city model of the Special Interest Group 3D (SIG 3D) of GDI NRW-->
-<!-- Editors: PD Dr. Gerhard Groeger, Institute for Geodesy and Geoinformation, University of Bonn & -->
-<!-- Prof. Dr. Thomas H. Kolbe, Institute for Geodesy and Geoinformation Science, Technical University of Berlin -->
-<!-- For further information see: www.citygml.org -->
-<!-- For the history of changes and additions to this CityGML schema see file history.txt -->
-<xs:schema xmlns="http://www.opengis.net/citygml/waterbody/1.0" xmlns:core="http://www.opengis.net/citygml/1.0"
+<!-- CityGML Version No. 2.0, February 2012 -->
+<!-- CityGML - GML 3.1.1 application schema for 3D city models -->
+<!-- International encoding standard of the Open Geospatial Consortium, see http://www.opengeospatial.org/standards/citygml -->
+<!-- Jointly developed by the Special Interest Group 3D (SIG 3D) of GDI-DE, see http://www.sig3d.org               -->
+<!-- For further information see: http://www.citygml.org -->
+<xs:schema xmlns="http://www.opengis.net/citygml/waterbody/2.0" xmlns:core="http://www.opengis.net/citygml/2.0"
 	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml"
-	targetNamespace="http://www.opengis.net/citygml/waterbody/1.0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	targetNamespace="http://www.opengis.net/citygml/waterbody/2.0" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.0.0">
+	<xs:annotation>
+		<xs:documentation>
+	CityGML is an OGC Standard.
+	Copyright (c) 2012 Open Geospatial Consortium.
+	To obtain additional rights of use, visit http://www.opengeospatial.org/legal/ .
+		</xs:documentation>
+	</xs:annotation>
 	<xs:import namespace="http://www.opengis.net/gml" schemaLocation="../../GML/3.1.1/base/gml.xsd"/>
-	<xs:import namespace="http://www.opengis.net/citygml/1.0" schemaLocation="cityGMLBase.xsd"/>
+	<xs:import namespace="http://www.opengis.net/citygml/2.0" schemaLocation="cityGMLBase.xsd"/>
 	<!-- ========================================================================================= -->
 	<!-- ==============================CityGML WaterBody module ===================================== -->
 	<!-- ========================================================================================= -->
@@ -28,7 +34,7 @@
 		</xs:complexContent>
 	</xs:complexType>
 	<!-- ========================================================================================= -->
-	<xs:element name="_WaterObject" type="AbstractWaterObjectType" substitutionGroup="core:_CityObject"/>
+	<xs:element name="_WaterObject" type="AbstractWaterObjectType" abstract="true" substitutionGroup="core:_CityObject"/>
 	<!-- ========================================================================================= -->
 	<xs:element name="_GenericApplicationPropertyOfWaterObject" type="xs:anyType" abstract="true"/>
 	<!-- ========================================================================================= -->
@@ -41,9 +47,9 @@
 		<xs:complexContent>
 			<xs:extension base="AbstractWaterObjectType">
 				<xs:sequence>
-					<xs:element name="class" type="WaterBodyClassType" minOccurs="0"/>
-					<xs:element name="function" type="WaterBodyFunctionType" minOccurs="0" maxOccurs="unbounded"/>
-					<xs:element name="usage" type="WaterBodyUsageType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="class" type="gml:CodeType" minOccurs="0"/>
+					<xs:element name="function" type="gml:CodeType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="usage" type="gml:CodeType" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element name="lod0MultiCurve" type="gml:MultiCurvePropertyType" minOccurs="0"/>
 					<xs:element name="lod0MultiSurface" type="gml:MultiSurfacePropertyType" minOccurs="0"/>
 					<xs:element name="lod1MultiCurve" type="gml:MultiCurvePropertyType" minOccurs="0"/>
@@ -63,43 +69,17 @@
 	<!-- ========================================================================================= -->
 	<xs:element name="_GenericApplicationPropertyOfWaterBody" type="xs:anyType" abstract="true"/>
 	<!-- ========================================================================================= -->
-	<xs:simpleType name="WaterBodyClassType">
-		<xs:annotation>
-			<xs:documentation>Class of a Water Body. The values of this type are defined in the XML file WaterBodyClassType.xml,
-				according to the dictionary concept of GML3. </xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:string"/>
-	</xs:simpleType>
-	<!-- ========================================================================================= -->
-	<xs:simpleType name="WaterBodyFunctionType">
-		<xs:annotation>
-			<xs:documentation>Function of a Water Body. The values of this type are defined in the XML file WaterBodyFunctionType.xml,
-				according to the dictionary concept of GML3. </xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:string"/>
-	</xs:simpleType>
-	<!-- ========================================================================================= -->
-	<xs:simpleType name="WaterBodyUsageType">
-		<xs:annotation>
-			<xs:documentation>Actual usage of a water body. The values of this type are defined in the XML file WaterBodyUsageType.xml,
-				according to the dictionary concept of GML3. </xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:string"/>
-	</xs:simpleType>
-	<!-- ========================================================================================= -->
 	<xs:complexType name="BoundedByWaterSurfacePropertyType">
 		<xs:annotation>
 			<xs:documentation>Denotes the relation of a WaterBody to its boundary surfaces, which are of type _WaterBoundarySurface. The
 				BoundedByWaterSurfacePropertyType element must either carry a reference to a _WaterBoundarySurface object or contain a
 				_WaterBoundarySurface object inline, but neither both nor none. </xs:documentation>
 		</xs:annotation>
-		<xs:complexContent>
-			<xs:restriction base="gml:AssociationType">
-				<xs:sequence minOccurs="0">
-					<xs:element ref="_WaterBoundarySurface"/>
-				</xs:sequence>
-			</xs:restriction>
-		</xs:complexContent>
+		<xs:sequence minOccurs="0">
+			<xs:element ref="_WaterBoundarySurface"/>
+			<xs:element ref="gml:_ADEComponent" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gml:AssociationAttributeGroup"/>
 	</xs:complexType>
 	<!-- ========================================================================================= -->
 	<xs:complexType name="AbstractWaterBoundarySurfaceType" abstract="true">
@@ -124,16 +104,6 @@
 	<!-- ========================================================================================= -->
 	<xs:element name="_GenericApplicationPropertyOfWaterBoundarySurface" type="xs:anyType" abstract="true"/>
 	<!-- ========================================================================================= -->
-	<xs:simpleType name="WaterLevelType">
-		<xs:annotation>
-			<xs:documentation>Type for the specification of the level of a water surface. The optional attribute waterLevel of a
-				WaterSurface can be used to describe the water level, for which the given 3D surface geometry was acquired. This is
-				especially important, when the water body is influenced by the tide. The values of this type are defined in the XML file
-				WaterLevelType.xml, according to the dictionary concept of GML3. </xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:string"/>
-	</xs:simpleType>
-	<!-- ========================================================================================= -->
 	<xs:complexType name="WaterSurfaceType">
 		<xs:annotation>
 			<xs:documentation>Type describing the surface of a water body, which separates the water from the air. As subclass of
@@ -143,7 +113,14 @@
 		<xs:complexContent>
 			<xs:extension base="AbstractWaterBoundarySurfaceType">
 				<xs:sequence>
-					<xs:element name="waterLevel" type="WaterLevelType" minOccurs="0"/>
+					<xs:element name="waterLevel" type="gml:CodeType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Type for the specification of the level of a water surface. The optional attribute waterLevel of a
+								WaterSurface can be used to describe the water level, for which the given 3D surface geometry was acquired. This
+								is especially important, when the water body is influenced by the tide. The values of this type are defined in
+								external code lists.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 					<xs:element ref="_GenericApplicationPropertyOfWaterSurface" minOccurs="0" maxOccurs="unbounded"/>
 				</xs:sequence>
 			</xs:extension>

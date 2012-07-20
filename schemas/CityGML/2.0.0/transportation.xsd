@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- CityGML Version No. 1.0.0, May 19th, 2008-->
-<!-- CityGML - GML3 application schema for the 3D city model of the Special Interest Group 3D (SIG 3D) of GDI NRW-->
-<!-- Editors: PD Dr. Gerhard Groeger, Institute for Geodesy and Geoinformation, University of Bonn & -->
-<!-- Prof. Dr. Thomas H. Kolbe, Institute for Geodesy and Geoinformation Science, Technical University of Berlin -->
-<!-- For further information see: www.citygml.org -->
-<!-- For the history of changes and additions to this CityGML schema see file history.txt -->
-<xs:schema xmlns="http://www.opengis.net/citygml/transportation/1.0" xmlns:core="http://www.opengis.net/citygml/1.0"
+<!-- CityGML Version No. 2.0, February 2012 -->
+<!-- CityGML - GML 3.1.1 application schema for 3D city models -->
+<!-- International encoding standard of the Open Geospatial Consortium, see http://www.opengeospatial.org/standards/citygml -->
+<!-- Jointly developed by the Special Interest Group 3D (SIG 3D) of GDI-DE, see http://www.sig3d.org               -->
+<!-- For further information see: http://www.citygml.org -->
+<xs:schema xmlns="http://www.opengis.net/citygml/transportation/2.0" xmlns:core="http://www.opengis.net/citygml/2.0"
 	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml"
-	targetNamespace="http://www.opengis.net/citygml/transportation/1.0" elementFormDefault="qualified"
-	attributeFormDefault="unqualified">
+	targetNamespace="http://www.opengis.net/citygml/transportation/2.0" elementFormDefault="qualified"
+	attributeFormDefault="unqualified" version="2.0.0">
+	<xs:annotation>
+		<xs:documentation>
+	CityGML is an OGC Standard.
+	Copyright (c) 2012 Open Geospatial Consortium.
+	To obtain additional rights of use, visit http://www.opengeospatial.org/legal/ .
+		</xs:documentation>
+	</xs:annotation>
 	<xs:import namespace="http://www.opengis.net/gml" schemaLocation="../../GML/3.1.1/base/gml.xsd"/>
-	<xs:import namespace="http://www.opengis.net/citygml/1.0" schemaLocation="cityGMLBase.xsd"/>
+	<xs:import namespace="http://www.opengis.net/citygml/2.0" schemaLocation="cityGMLBase.xsd"/>
 	<!-- ========================================================================================= -->
 	<!-- ===========================CityGML Transportation module ===================================== -->
 	<!-- ========================================================================================= -->
@@ -27,7 +33,8 @@
 		</xs:complexContent>
 	</xs:complexType>
 	<!-- ========================================================================================= -->
-	<xs:element name="_TransportationObject" type="AbstractTransportationObjectType" substitutionGroup="core:_CityObject"/>
+	<xs:element name="_TransportationObject" type="AbstractTransportationObjectType" abstract="true"
+		substitutionGroup="core:_CityObject"/>
 	<!-- ========================================================================================= -->
 	<xs:element name="_GenericApplicationPropertyOfTransportationObject" type="xs:anyType" abstract="true"/>
 	<!-- ========================================================================================= -->
@@ -41,8 +48,9 @@
 		<xs:complexContent>
 			<xs:extension base="AbstractTransportationObjectType">
 				<xs:sequence>
-					<xs:element name="function" type="TransportationComplexFunctionType" minOccurs="0" maxOccurs="unbounded"/>
-					<xs:element name="usage" type="TransportationComplexUsageType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="class" type="gml:CodeType" minOccurs="0"/>
+					<xs:element name="function" type="gml:CodeType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="usage" type="gml:CodeType" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element name="trafficArea" type="TrafficAreaPropertyType" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element name="auxiliaryTrafficArea" type="AuxiliaryTrafficAreaPropertyType" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element name="lod0Network" type="gml:GeometricComplexPropertyType" minOccurs="0" maxOccurs="unbounded"/>
@@ -69,9 +77,10 @@
 		<xs:complexContent>
 			<xs:extension base="AbstractTransportationObjectType">
 				<xs:sequence>
-					<xs:element name="usage" type="TrafficAreaUsageType" minOccurs="0" maxOccurs="unbounded"/>
-					<xs:element name="function" type="TrafficAreaFunctionType" minOccurs="0" maxOccurs="unbounded"/>
-					<xs:element name="surfaceMaterial" type="TrafficSurfaceMaterialType" minOccurs="0"/>
+					<xs:element name="class" type="gml:CodeType" minOccurs="0"/>
+					<xs:element name="function" type="gml:CodeType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="usage" type="gml:CodeType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="surfaceMaterial" type="gml:CodeType" minOccurs="0"/>
 					<xs:element name="lod2MultiSurface" type="gml:MultiSurfacePropertyType" minOccurs="0"/>
 					<xs:element name="lod3MultiSurface" type="gml:MultiSurfacePropertyType" minOccurs="0"/>
 					<xs:element name="lod4MultiSurface" type="gml:MultiSurfacePropertyType" minOccurs="0"/>
@@ -95,8 +104,10 @@
 		<xs:complexContent>
 			<xs:extension base="AbstractTransportationObjectType">
 				<xs:sequence>
-					<xs:element name="function" type="AuxiliaryTrafficAreaFunctionType" minOccurs="0" maxOccurs="unbounded"/>
-					<xs:element name="surfaceMaterial" type="TrafficSurfaceMaterialType" minOccurs="0"/>
+					<xs:element name="class" type="gml:CodeType" minOccurs="0"/>
+					<xs:element name="function" type="gml:CodeType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="usage" type="gml:CodeType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="surfaceMaterial" type="gml:CodeType" minOccurs="0"/>
 					<xs:element name="lod2MultiSurface" type="gml:MultiSurfacePropertyType" minOccurs="0"/>
 					<xs:element name="lod3MultiSurface" type="gml:MultiSurfacePropertyType" minOccurs="0"/>
 					<xs:element name="lod4MultiSurface" type="gml:MultiSurfacePropertyType" minOccurs="0"/>
@@ -116,13 +127,11 @@
 				TrafficAreaPropertyType element must either carry a reference to a TrafficArea object or contain a TrafficArea object
 				inline, but neither both nor none. </xs:documentation>
 		</xs:annotation>
-		<xs:complexContent>
-			<xs:restriction base="gml:AssociationType">
-				<xs:sequence minOccurs="0">
-					<xs:element ref="TrafficArea"/>
-				</xs:sequence>
-			</xs:restriction>
-		</xs:complexContent>
+		<xs:sequence minOccurs="0">
+			<xs:element ref="TrafficArea"/>
+			<xs:element ref="gml:_ADEComponent" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gml:AssociationAttributeGroup"/>
 	</xs:complexType>
 	<!-- ========================================================================================= -->
 	<xs:complexType name="AuxiliaryTrafficAreaPropertyType">
@@ -131,13 +140,11 @@
 				TrafficAreaPropertyType element must either carry a reference to a TrafficArea object or contain a TrafficArea object
 				inline, but neither both nor none. </xs:documentation>
 		</xs:annotation>
-		<xs:complexContent>
-			<xs:restriction base="gml:AssociationType">
-				<xs:sequence minOccurs="0">
-					<xs:element ref="AuxiliaryTrafficArea"/>
-				</xs:sequence>
-			</xs:restriction>
-		</xs:complexContent>
+		<xs:sequence minOccurs="0">
+			<xs:element ref="AuxiliaryTrafficArea"/>
+			<xs:element ref="gml:_ADEComponent" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gml:AssociationAttributeGroup"/>
 	</xs:complexType>
 	<!-- ========================================================================================= -->
 	<!-- ============================Subtypes of Transportation Complex================================= -->
@@ -215,53 +222,5 @@
 	<xs:element name="Square" type="SquareType" substitutionGroup="TransportationComplex"/>
 	<!-- ========================================================================================= -->
 	<xs:element name="_GenericApplicationPropertyOfSquare" type="xs:anyType" abstract="true"/>
-	<!-- ========================================================================================= -->
-	<xs:simpleType name="TransportationComplexFunctionType">
-		<xs:annotation>
-			<xs:documentation>Function of a transportation complex. The values of this type are defined in the XML file
-				TransportationComplexFunctionType.xml, according to the dictionary concept of GML3. </xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:string"/>
-	</xs:simpleType>
-	<!-- ========================================================================================= -->
-	<xs:simpleType name="TransportationComplexUsageType">
-		<xs:annotation>
-			<xs:documentation>Actual Usage of a transportation complex. The values of this type are defined in the XML file
-				TransportationComplexUsageType.xml, according to the dictionary concept of GML3. </xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:string"/>
-	</xs:simpleType>
-	<!-- ========================================================================================= -->
-	<xs:simpleType name="TrafficAreaFunctionType">
-		<xs:annotation>
-			<xs:documentation>Function of a traffic area. The values of this type are defined in the XML file
-				TrafficAreaFunctionType.xml, according to the dictionary concept of GML3. </xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:string"/>
-	</xs:simpleType>
-	<!-- ========================================================================================= -->
-	<xs:simpleType name="AuxiliaryTrafficAreaFunctionType">
-		<xs:annotation>
-			<xs:documentation>Function of an auxiliary traffic area. The values of this type are defined in the XML file
-				AuxiliaryTrafficAreaFunctionType.xml, according to the dictionary concept of GML3. </xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:string"/>
-	</xs:simpleType>
-	<!-- ========================================================================================= -->
-	<xs:simpleType name="TrafficAreaUsageType">
-		<xs:annotation>
-			<xs:documentation>Usage of a traffic area. The values of this type are defined in the XML file TrafficAreaUsageType.xml,
-				according to the dictionary concept of GML3. </xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:string"/>
-	</xs:simpleType>
-	<!-- ========================================================================================= -->
-	<xs:simpleType name="TrafficSurfaceMaterialType">
-		<xs:annotation>
-			<xs:documentation>Type for surface materials of transportation objects. The values of this type are defined in the XML file
-				TrafficSurfaceMaterialType.xml, according to the dictionary concept of GML3. </xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:string"/>
-	</xs:simpleType>
 	<!-- ========================================================================================= -->
 </xs:schema>

@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- CityGML Version No. 1.0.0, May 19th, 2008-->
-<!-- CityGML - GML3 application schema for the 3D city model of the Special Interest Group 3D (SIG 3D) of GDI NRW-->
-<!-- Editors: PD Dr. Gerhard Groeger, Institute for Geodesy and Geoinformation, University of Bonn & -->
-<!-- Prof. Dr. Thomas H. Kolbe, Institute for Geodesy and Geoinformation Science, Technical University of Berlin -->
-<!-- For further information see: www.citygml.org -->
-<!-- For the history of changes and additions to this CityGML schema see file history.txt -->
-<xs:schema xmlns="http://www.opengis.net/citygml/relief/1.0" xmlns:core="http://www.opengis.net/citygml/1.0"
+<!-- CityGML Version No. 2.0, February 2012 -->
+<!-- CityGML - GML 3.1.1 application schema for 3D city models -->
+<!-- International encoding standard of the Open Geospatial Consortium, see http://www.opengeospatial.org/standards/citygml -->
+<!-- Jointly developed by the Special Interest Group 3D (SIG 3D) of GDI-DE, see http://www.sig3d.org               -->
+<!-- For further information see: http://www.citygml.org -->
+<xs:schema xmlns="http://www.opengis.net/citygml/relief/2.0" xmlns:core="http://www.opengis.net/citygml/2.0"
 	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml"
-	targetNamespace="http://www.opengis.net/citygml/relief/1.0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	targetNamespace="http://www.opengis.net/citygml/relief/2.0" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.0.0">
+	<xs:annotation>
+		<xs:documentation>
+	CityGML is an OGC Standard.
+	Copyright (c) 2012 Open Geospatial Consortium.
+	To obtain additional rights of use, visit http://www.opengeospatial.org/legal/ .
+		</xs:documentation>
+	</xs:annotation>
 	<xs:import namespace="http://www.opengis.net/gml" schemaLocation="../../GML/3.1.1/base/gml.xsd"/>
-	<xs:import namespace="http://www.opengis.net/citygml/1.0" schemaLocation="cityGMLBase.xsd"/>
+	<xs:import namespace="http://www.opengis.net/citygml/2.0" schemaLocation="cityGMLBase.xsd"/>
 	<!-- ========================================================================================= -->
 	<!-- ==================================CityGML Relief module ===================================== -->
 	<!-- ========================================================================================= -->
@@ -61,13 +67,11 @@
 				either carry a reference to a _ReliefComponent object or contain a _ReliefComponent object inline, but neither both nor
 				none. </xs:documentation>
 		</xs:annotation>
-		<xs:complexContent>
-			<xs:restriction base="gml:AssociationType">
-				<xs:sequence minOccurs="0">
-					<xs:element ref="_ReliefComponent"/>
-				</xs:sequence>
-			</xs:restriction>
-		</xs:complexContent>
+		<xs:sequence minOccurs="0">
+			<xs:element ref="_ReliefComponent"/>
+			<xs:element ref="gml:_ADEComponent" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gml:AssociationAttributeGroup"/>
 	</xs:complexType>
 	<!-- ========================================================================================= -->
 	<xs:complexType name="TINReliefType">
@@ -157,28 +161,23 @@
 				reference to a gml:TriangulatedSurface object or contain a gml:TriangulatedSurface object inline, but neither both nor
 				none. </xs:documentation>
 		</xs:annotation>
-		<xs:complexContent>
-			<xs:restriction base="gml:AssociationType">
-				<xs:sequence minOccurs="0">
-					<xs:element ref="gml:TriangulatedSurface"/>
-				</xs:sequence>
-			</xs:restriction>
-		</xs:complexContent>
+		<xs:sequence minOccurs="0">
+			<xs:element ref="gml:TriangulatedSurface"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gml:AssociationAttributeGroup"/>
 	</xs:complexType>
 	<!-- ========================================================================================= -->
 	<xs:complexType name="gridPropertyType">
-		<xs:complexContent>
-			<xs:annotation>
-				<xs:documentation>Denotes the relation of a RasterReliefType to its components. The gridPropertyType element must either
-					carry a reference to a gml:RectifiedGridCoverage object or contain a gml:RectifiedGridCoverage object inline, but
-					neither both nor none. </xs:documentation>
-			</xs:annotation>
-			<xs:restriction base="gml:AssociationType">
-				<xs:sequence minOccurs="0">
-					<xs:element ref="gml:RectifiedGridCoverage"/>
-				</xs:sequence>
-			</xs:restriction>
-		</xs:complexContent>
+		<xs:annotation>
+			<xs:documentation>Denotes the relation of a RasterReliefType to its components. The gridPropertyType element must either
+				carry a reference to a gml:RectifiedGridCoverage object or contain a gml:RectifiedGridCoverage object inline, but neither
+				both nor none. </xs:documentation>
+		</xs:annotation>
+		<xs:sequence minOccurs="0">
+			<xs:element ref="gml:RectifiedGridCoverage"/>
+			<xs:element ref="gml:_ADEComponent" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gml:AssociationAttributeGroup"/>
 	</xs:complexType>
 	<!-- ========================================================================================= -->
 	<!-- ============= The height values of the grid are represented by Elevation elements, which have a height  ====== -->

@@ -115,7 +115,7 @@ public class ADE_XJC {
 			
 			if (clean) {
 				log(LogLevel.INFO, "Cleaning output folder");
-				Util.rmdir(outputFolder);
+				Util.rmdir(outputFolder, true);
 			}
 				
 			createBuildEnvironment();
@@ -160,7 +160,7 @@ public class ADE_XJC {
 			status = 1;
 			
 			if (clean)
-				Util.rmdir(outputFolder);
+				Util.rmdir(outputFolder, true);
 		} finally {
 			cleanBuildEnvironment();
 		}
@@ -193,8 +193,8 @@ public class ADE_XJC {
 			
 			BigInteger md5 = new BigInteger("0");
 			md5 = Util.dir2md5(schema_dir, md5);
-					
-			if (!md5.toString(16).equals("2accaacf93c976282d31265d1d8e3c2b"))
+			
+			if (!md5.toString(16).equals("2063ae80bf0191bf63593d5bb5d9cb5a"))
 				throw new Exception("Contents of subfolder 'schemas' have been altered. Please restore its original state.");
 		}
 		
@@ -206,10 +206,13 @@ public class ADE_XJC {
 	}
 
 	private void cleanBuildEnvironment() {
-		Util.rmdir(new File(outputFolder.getAbsolutePath() + "/org/citygml4j"));
+		Util.rmdir(new File(outputFolder.getAbsolutePath() + "/net/opengis/citygml"), true);
+		Util.rmdir(new File(outputFolder.getAbsolutePath() + "/net/opengis/gml"), true);
+		Util.rmdir(new File(outputFolder.getAbsolutePath() + "/net"), false);
+		Util.rmdir(new File(outputFolder.getAbsolutePath() + "/oasis"), true);
 
 		if (!packageName.startsWith("org"))
-			Util.rmdir(new File(outputFolder.getAbsolutePath() + "/org"));
+			Util.rmdir(new File(outputFolder.getAbsolutePath() + "/org"), true);
 	}
 
 	private void printUsage(CmdLineParser parser, PrintStream out) {

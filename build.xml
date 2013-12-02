@@ -3,7 +3,7 @@
 
 	<!-- application specific variables -->
 	<property name="app.name" value="ade-xjc" />
-	<property name="app.version" value="2.0" />
+	<property name="app.version" value="2.1" />
 	<property name="app.jar" value="${app.name}.jar" />
 	<property name="app.title" value="JAXB xjc wrapper for citygml4j version ${app.version}" />
 	<property name="app.vendor" value="IGG, Technical University Berlin, Germany, http://www.igg.tu-berlin.de" />
@@ -102,12 +102,10 @@
 				<attribute name="Class-Path" value="." />
 				<attribute name="Main-Class" value="${app.class}" />
 			</manifest>
-			<zipfileset excludes="META-INF/*.SF" src="${lib}/activation.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${lib}/jaxb-api.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${lib}/jsr173_1.0_api.jar" />
+			<zipfileset excludes="META-INF/*.SF" src="${lib}/jaxb-core.jar" />
 			<zipfileset excludes="META-INF/*.SF" src="${lib}/jaxb-impl.jar" />
 			<zipfileset excludes="META-INF/*.SF" src="${lib}/jaxb-xjc.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${lib}/args4j-2.0.9.jar" />
+			<zipfileset excludes="META-INF/*.SF" src="${lib}/args4j-2.0.11.jar" />
 			<fileset dir="${dist}" includes="README" />
 			<fileset dir="${dist.license}" includes="**/*" />
 		</jar>

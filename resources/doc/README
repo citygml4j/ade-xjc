@@ -29,7 +29,7 @@ the files COPYING and COPYING.LESSER or visit http://www.gnu.org/licenses/.
 2. Copyright
 ------------
 
-(c) 2007 - 2012
+(c) 2007 - 2013
 Institute for Geodesy and Geoinformation Science (IGG)
 Technische Universitaet Berlin, Germany
 http://www.igg.tu-berlin.de/
@@ -50,7 +50,7 @@ your application.
 4. System requirements
 ----------------------
 
-* Java JRE or JDK >= 1.5
+* Java JRE or JDK >= 1.7
 * citygml4j library version !app.version!
 
 
@@ -74,23 +74,23 @@ subfolder "sample".
 6. Developers
 -------------
 
-Claus Nagel <claus.nagel@tu-berlin.de>
+Claus Nagel <cnagel@virtualcitysystems.de>
 
 
 7. Contact
 ----------
 
-claus.nagel@tu-berlin.de
+cnagel@virtualcitysystems.de
 
 
 8. Websites
 -----------
 
 Official !app.name! website: 
-http://www.igg.tu-berlin.de/software
+http://www.citygml4j.org/
 
 Related websites:
-http://www.igg.tu-berlin.de/
+https://github.com/citygml4j/
 http://www.citygml.org/
 http://www.citygmlwiki.org/
 http://www.opengeospatial.org/standards/citygml

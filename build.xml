@@ -3,12 +3,16 @@
 
 	<!-- application specific variables -->
 	<property name="app.name" value="ade-xjc" />
-	<property name="app.version" value="2.1" />
+	<property name="app.version" value="2.2" />
 	<property name="app.jar" value="${app.name}.jar" />
-	<property name="app.title" value="JAXB xjc wrapper for citygml4j version ${app.version}" />
-	<property name="app.vendor" value="IGG, Technical University Berlin, Germany, http://www.igg.tu-berlin.de" />
+	<property name="app.title" value="A JAXB xjc wrapper for citygml4j" />
 	<property name="app.class" value="org.citygml4j.ade_xjc.ADE_XJC" />
-
+	<property name="copyright.year" value="2013 - 2015"/>
+	<property name="copyright.owner" value="Claus Nagel"/>
+	<property name="copyright.owner.email" value="claus.nagel@gmail.com"/>
+	<property name="developer.main.name" value="Claus Nagel"/>
+	<property name="developer.main.email" value="claus.nagel@gmail.com"/>
+	
 	<!-- dirs -->
 	<property name="project.basedir" location=".." />
 	<property name="src" location="src" />
@@ -65,7 +69,7 @@
 			<fileset dir="${resources.license}" includes="**/*" />
 		</copy>
 
-		<!-- copy README template -->
+		<!-- copy README.txt template -->
 		<copy toDir="${dist}">
 			<fileset dir="${resources.doc}" includes="**/*" />
 		</copy>
@@ -76,12 +80,17 @@
 		</copy>
 
 		<!-- replace tokens in template files -->
-		<replace file="${dist.license}/LICENSE" token="!app.title!" value="${app.title}" />
-		<replace file="${dist.license}/LICENSE" token="!app.name!" value="${app.name}" />
-		<replace file="${dist}/README" token="!app.name!" value="${app.name}" />
-		<replace file="${dist}/README" token="!app.title!" value="${app.title}" />
-		<replace file="${dist}/README" token="!app.jar!" value="${app.jar}" />
-		<replace file="${dist}/README" token="!app.version!" value="${app.version}" />
+		<replace file="${dist.license}/LICENSE.txt" token="!app.title!" value="${app.title}" />
+		<replace file="${dist.license}/LICENSE.txt" token="!app.name!" value="${app.name}" />
+		<replace file="${dist}/README.txt" token="!app.name!" value="${app.name}" />
+		<replace file="${dist}/README.txt" token="!app.title!" value="${app.title}" />
+		<replace file="${dist}/README.txt" token="!app.jar!" value="${app.jar}" />
+		<replace file="${dist}/README.txt" token="!app.version!" value="${app.version}" />
+		<replace file="${dist}/README.txt" token="!copyright.year!" value="${copyright.year}" />
+		<replace file="${dist}/README.txt" token="!copyright.owner!" value="${copyright.owner}" />
+		<replace file="${dist}/README.txt" token="!copyright.owner.email!" value="${copyright.owner.email}" />
+		<replace file="${dist}/README.txt" token="!developer.main.name!" value="${developer.main.name}" />
+		<replace file="${dist}/README.txt" token="!developer.main.email!" value="${developer.main.email}" />
 		<replace file="${dist.sample}/build.xml" token="!app.jar!" value="${app.jar}" />
 
 		<!-- copy schema files -->
@@ -98,15 +107,14 @@
 				<attribute name="Built-Date" value="${TODAY}" />
 				<attribute name="Implementation-Title" value="${app.title}" />
 				<attribute name="Implementation-Version" value="${app.version}-b${build.number}" />
-				<attribute name="Implementation-Vendor" value="${app.vendor}" />
 				<attribute name="Class-Path" value="." />
 				<attribute name="Main-Class" value="${app.class}" />
 			</manifest>
 			<zipfileset excludes="META-INF/*.SF" src="${lib}/jaxb-core.jar" />
 			<zipfileset excludes="META-INF/*.SF" src="${lib}/jaxb-impl.jar" />
 			<zipfileset excludes="META-INF/*.SF" src="${lib}/jaxb-xjc.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${lib}/args4j-2.0.11.jar" />
-			<fileset dir="${dist}" includes="README" />
+			<zipfileset excludes="META-INF/*.SF" src="${lib}/args4j-2.0.21.jar" />
+			<fileset dir="${dist}" includes="README.txt" />
 			<fileset dir="${dist.license}" includes="**/*" />
 		</jar>
 

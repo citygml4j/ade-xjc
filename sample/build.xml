@@ -15,6 +15,7 @@
 		<echo level="info" message="invoking &quot;java -jar !app.jar! ${arg}&quot;" />
 		<echo />
 		<java jar="!app.jar!" fork="true">
+			<jvmarg value="-Djavax.xml.accessExternalSchema=file"/>
 			<arg value="${arg}" />
 		</java>
 	</target>

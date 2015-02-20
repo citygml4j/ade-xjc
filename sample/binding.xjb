@@ -7,6 +7,11 @@
                 <jaxb:property name="boundedBySurface"/>
             </jaxb:bindings>
         </jaxb:bindings>
+        <jaxb:bindings node="//xs:complexType[@name='HollowSpaceType']">
+            <jaxb:bindings node=".//xs:element[@name='boundedBy']">
+                <jaxb:property name="boundedBySurface"/>
+            </jaxb:bindings>
+        </jaxb:bindings>
     </jaxb:bindings>
     
 </jaxb:bindings>

@@ -1,13 +1,15 @@
-!app.name! v!app.version! - !app.title!
+!app.name! - !app.title!
 
-  This program is free software and comes WITHOUT ANY WARRANTY. 
-  See the file LICENSE for more details. 
+  This program is free software and is distributed in the hope
+  that it will be useful, but WITHOUT ANY WARRANTY; without even
+  the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+  PURPOSE. See the LICENSE.txt file for more details.
 
 
 0. Index
 --------
 
-1. Licence
+1. License
 2. Copyright
 3. About
 4. System requirements
@@ -17,29 +19,27 @@
 8. Websites
 
 
-1. Licence
+1. License
 ----------
 
-The !app.name! is free software under
-the GNU Lesser General Public License Version 3.0. See the file LICENSE 
-for more details. For a copy of the GNU Lesser General Public License see 
-the files COPYING and COPYING.LESSER or visit http://www.gnu.org/licenses/.
+The !app.name! is free software under the
+GNU Lesser General Public License Version 3.0. See the LICENSE.txt file for more 
+details. For a copy of the GNU Lesser General Public License see the files
+COPYING.txt and COPYING.LESSER.txt or visit http://www.gnu.org/licenses/.
 
 
 2. Copyright
 ------------
 
-(c) 2007 - 2013
-Institute for Geodesy and Geoinformation Science (IGG)
-Technische Universitaet Berlin, Germany
-http://www.igg.tu-berlin.de/
+(C) !copyright.year!,
+!copyright.owner! <!copyright.owner.email!>
 
 
 3. About
 --------
 
-"!app.name!" is a command line tool and a wrapper for the XML Schema compiler
-"xjc" shipped with JAXB. !app.name! compiles an arbitrary CityGML ADE Schema 
+!app.name! is a command line tool and a wrapper for the XML Schema compiler
+xjc shipped with JAXB. !app.name! compiles an arbitrary CityGML ADE Schema 
 to a set of corresponding JAXB classes. The resulting classes are automatically
 derived from the JAXB classes shipped with citygml4j. Thus, the classes can 
 easily be used with the citygml4j library. However, this also requires the 
@@ -58,7 +58,7 @@ your application.
 ----------------
 
 !app.name! is a command line tool. In order to get a list of supported 
-arguments, invoke the tool in a shell environment like this:
+arguments, invoke the tool in a shell environment:
 
   > java -jar !app.jar! -help
 
@@ -74,13 +74,13 @@ subfolder "sample".
 6. Developers
 -------------
 
-Claus Nagel <cnagel@virtualcitysystems.de>
+!developer.main.name! <!developer.main.email!>
 
 
 7. Contact
 ----------
 
-cnagel@virtualcitysystems.de
+!developer.main.email!
 
 
 8. Websites
@@ -88,9 +88,9 @@ cnagel@virtualcitysystems.de
 
 Official !app.name! website: 
 http://www.citygml4j.org/
+https://github.com/citygml4j/
 
 Related websites:
-https://github.com/citygml4j/
 http://www.citygml.org/
 http://www.citygmlwiki.org/
 http://www.opengeospatial.org/standards/citygml

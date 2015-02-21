@@ -19,7 +19,7 @@ ade-xjc depends on JRE 7 or higher. The project uses [Apache Ant](http://ant.apa
 
     % ant dist
 
-This will create a folder `ade-xjc-<version>` containing the `ade-xjc.jar` executable and the following subfolders.
+This will create a folder `ade-xjc-<version>` containing the `ade-xjc.jar` executable and the following subfolders:
 * `license` -- license information
 * `sample` -- a sample CityGML ADE that you may use for testing
 * `schemas` -- the official CityGML, GML and xAL schemas
@@ -69,3 +69,8 @@ citygml4j comes with a sample program that illustrates this scenario. The sample
 Note that you need to check which version of citygml4j is supposed by your version of ade-xjc. Use the following command to find out.
 
     % java -jar ade-xjc.jar -version
+
+The output will look similar to this:
+
+    ade-xjc version 2.2-b1
+    XML Schema binding compiler for CityGML ADEs; use with citygml4j version 2.2

@@ -8,11 +8,11 @@
 	<property name="app.title" value="XML Schema binding compiler for CityGML ADEs" />
 	<property name="app.manifest.title" value="${app.title}; use with citygml4j version ${app.version}" />
 	<property name="app.class" value="org.citygml4j.ade_xjc.ADE_XJC" />
-	<property name="copyright.year" value="2013 - 2015"/>
-	<property name="copyright.owner" value="Claus Nagel"/>
-	<property name="copyright.owner.email" value="claus.nagel@gmail.com"/>
-	<property name="developer.main.name" value="Claus Nagel"/>
-	<property name="developer.main.email" value="claus.nagel@gmail.com"/>
+	<property name="copyright.year" value="2013 - 2015" />
+	<property name="copyright.owner" value="Claus Nagel" />
+	<property name="copyright.owner.email" value="claus.nagel@gmail.com" />
+	<property name="developer.main.name" value="Claus Nagel" />
+	<property name="developer.main.email" value="claus.nagel@gmail.com" />
 
 	<!-- dirs -->
 	<property name="project.basedir" location=".." />
@@ -30,6 +30,7 @@
 	<property name="build.classes" location="${build}/classes" />
 
 	<property name="dist" location="${app.name}-${app.version}" />
+	<property name="dist.lib" location="${dist}/lib" />
 	<property name="dist.license" location="${dist}/license" />
 	<property name="dist.schemas" location="${dist}/schemas" />
 	<property name="dist.sample" location="${dist}/sample" />
@@ -101,6 +102,12 @@
 
 		<buildnumber file="build.num" />
 
+		<!-- set package variables -->
+		<pathconvert property="manifest.classpath" dirsep="/" pathsep=" " refid="classpath">
+			<map from="${basedir}${file.separator}lib${file.separator}" to="lib${file.separator}" />
+		</pathconvert>
+		<buildnumber file="build.num" />
+
 		<!-- put everything in ${build} into .jar file -->
 		<jar jarfile="${dist}/${app.jar}" basedir="${build.classes}" filesetmanifest="mergewithoutmain">
 			<manifest>
@@ -108,16 +115,17 @@
 				<attribute name="Built-Date" value="${TODAY}" />
 				<attribute name="Implementation-Title" value="${app.manifest.title}" />
 				<attribute name="Implementation-Version" value="${app.version}-b${build.number}" />
-				<attribute name="Class-Path" value="." />
+				<attribute name="Class-Path" value="${manifest.classpath}" />
 				<attribute name="Main-Class" value="${app.class}" />
 			</manifest>
-			<zipfileset excludes="META-INF/*.SF" src="${lib}/jaxb-core.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${lib}/jaxb-impl.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${lib}/jaxb-xjc.jar" />
-			<zipfileset excludes="META-INF/*.SF" src="${lib}/args4j-2.0.21.jar" />
 			<fileset dir="${dist}" includes="README.txt" />
 			<fileset dir="${dist.license}" includes="**/*" />
 		</jar>
+
+		<!-- copy mandatory dependencies -->
+		<copy toDir="${dist.lib}">
+			<fileset dir="${lib}" includes="*.jar" />
+		</copy>
 
 		<!-- clean up template dir -->
 		<delete dir="${build}" />

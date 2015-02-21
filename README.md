@@ -26,7 +26,7 @@ This will create a folder `ade-xjc-<version>` with the following subfolders:
 
 Compiling a CityGML ADE Schema
 ------------------------------
-ade-xjc is a command line tool. In order to launch it, open a shell environment and navigate to the folder where you built the program. The command below runs ade-xjc and compiles the ADE Schema `CityGMLADE.xsd` to JAXB classes.
+ade-xjc is a command line tool. In order to launch it, open a shell environment and navigate to the folder where you built the program. The command below exemplifies how to run ade-xjc to compile the ADE Schema `CityGMLADE.xsd` to JAXB classes.
 
     % java -jar ade-xjc.jar /home/user/ade/CityGMLADE.xsd
 
@@ -34,7 +34,7 @@ To control the compilation process, ade-xjc offers the following program argumen
 
 |Argument | Description
 |------|----------
-|`binding <fileName>` | An optional JAXB binding file to control the schema compilation
+|`binding <fileName>` | An optional global JAXB binding file
 |`clean` | Cleans the output folder before compilation
 |`help`, `h` | Prints a help message to the console
 |`non-strict` | Per default, ade-xjc terminates with an error if the content of the `schemas` subfolder has been changed in order to ensure deterministic compilation results; use this argument to force ade-xjc to continue

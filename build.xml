@@ -5,7 +5,7 @@
 	<property name="app.name" value="ade-xjc" />
 	<property name="app.version" value="2.2" />
 	<property name="app.jar" value="${app.name}.jar" />
-	<property name="app.title" value="A JAXB xjc wrapper for citygml4j" />
+	<property name="app.title" value="XML Schema binding compiler for CityGML ADEs" />
 	<property name="app.class" value="org.citygml4j.ade_xjc.ADE_XJC" />
 	<property name="copyright.year" value="2013 - 2015"/>
 	<property name="copyright.owner" value="Claus Nagel"/>

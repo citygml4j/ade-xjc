@@ -22,10 +22,10 @@
 1. License
 ----------
 
-The !app.name! is free software under the
-GNU Lesser General Public License Version 3.0. See the LICENSE.txt file for more 
-details. For a copy of the GNU Lesser General Public License see the files
-COPYING.txt and COPYING.LESSER.txt or visit http://www.gnu.org/licenses/.
+!app.name! is free software under the GNU Lesser General Public License
+Version 3.0. See the LICENSE.txt file for more details. For a copy of the GNU
+Lesser General Public License see the files COPYING.txt and COPYING.LESSER.txt
+or visit http://www.gnu.org/licenses/.
 
 
 2. Copyright
@@ -38,20 +38,24 @@ COPYING.txt and COPYING.LESSER.txt or visit http://www.gnu.org/licenses/.
 3. About
 --------
 
-!app.name! is a command line tool and a wrapper for the XML Schema compiler
+!app.name! is a command line tool and wrapper for the XML Schema binding compiler
 xjc shipped with JAXB. !app.name! compiles an arbitrary CityGML ADE Schema 
-to a set of corresponding JAXB classes. The resulting classes are automatically
-derived from the JAXB classes shipped with citygml4j. Thus, the classes can 
-easily be used with the citygml4j library. However, this also requires the 
-citygml4j library on your classpath in order to use the compiled classes in
-your application.
+to a set of corresponding JAXB classes to be used with citygml4j. 
+
+!app.name! ensures that the resulting JAXB classes are correctly derived from
+and related to the CityGML, GML and xAL JAXB classes shipped with citygml4j,
+and thus that they can be directly used with the citygml4j library. The citygml4j
+library needs to be on your classpath in order to use the compiled classes
+in your application.
+
+!app.name! is part of the citygml4j project.
 
 
 4. System requirements
 ----------------------
 
-* Java JRE or JDK >= 1.7
-* citygml4j library version !app.version!
+* Java JRE or JDK >= 1.7 to launch the !app.name! binding compiler
+* citygml4j v!app.version! to use the compiled JAXB classes
 
 
 5. How to use it
@@ -60,15 +64,16 @@ your application.
 !app.name! is a command line tool. In order to get a list of supported 
 arguments, invoke the tool in a shell environment:
 
-  > java -jar !app.jar! -help
+  % java -jar !app.jar! -help
 
-The !app.name! compiler requires your ADE schema to point to the official
+The !app.name! compiler requires that your ADE schema points to the official
 CityGML and GML schemas provided in the subfolder "schemas". So please 
 adapt all <xs:import> statements in your ADE schema accordingly before 
-invoking the !app.name! compiler!
+invoking the !app.name! compiler.
 
-Please find a sample ADE schema together with an ANT build file in the
-subfolder "sample".
+A sample ADE schema together with an ANT build.xml file is provided in the
+subfolder "sample". Simply run the build.xml with Ant using the default
+target to compile the sample ADE to JAXB classes.
 
    
 6. Developers

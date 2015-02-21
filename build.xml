@@ -6,13 +6,14 @@
 	<property name="app.version" value="2.2" />
 	<property name="app.jar" value="${app.name}.jar" />
 	<property name="app.title" value="XML Schema binding compiler for CityGML ADEs" />
+	<property name="app.manifest.title" value="${app.title}; use with citygml4j version ${app.version}" />
 	<property name="app.class" value="org.citygml4j.ade_xjc.ADE_XJC" />
 	<property name="copyright.year" value="2013 - 2015"/>
 	<property name="copyright.owner" value="Claus Nagel"/>
 	<property name="copyright.owner.email" value="claus.nagel@gmail.com"/>
 	<property name="developer.main.name" value="Claus Nagel"/>
 	<property name="developer.main.email" value="claus.nagel@gmail.com"/>
-	
+
 	<!-- dirs -->
 	<property name="project.basedir" location=".." />
 	<property name="src" location="src" />
@@ -105,7 +106,7 @@
 			<manifest>
 				<attribute name="Built-Id" value="${user.name}-${app.name}-${app.version}" />
 				<attribute name="Built-Date" value="${TODAY}" />
-				<attribute name="Implementation-Title" value="${app.title}" />
+				<attribute name="Implementation-Title" value="${app.manifest.title}" />
 				<attribute name="Implementation-Version" value="${app.version}-b${build.number}" />
 				<attribute name="Class-Path" value="." />
 				<attribute name="Main-Class" value="${app.class}" />

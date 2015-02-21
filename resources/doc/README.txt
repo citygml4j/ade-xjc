@@ -45,7 +45,7 @@ to a set of corresponding JAXB classes to be used with citygml4j.
 !app.name! ensures that the resulting JAXB classes are correctly derived from
 and related to the CityGML, GML and xAL JAXB classes shipped with citygml4j,
 and thus that they can be directly used with the citygml4j library. The citygml4j
-library needs to be on your classpath in order to use the compiled classes
+library needs to be on your classpath in order to use the generated classes
 in your application.
 
 !app.name! is part of the citygml4j project.
@@ -55,7 +55,7 @@ in your application.
 ----------------------
 
 * Java JRE or JDK >= 1.7 to launch the !app.name! binding compiler
-* citygml4j v!app.version! to use the compiled JAXB classes
+* citygml4j v!app.version! to use the generated JAXB classes
 
 
 5. How to use it

@@ -50,7 +50,7 @@ ade-xjc provides the sample CityGML ADE Schema `CityGML-SubsurfaceADE-0_9_0.xsd`
 
 From within the `ade-xjc-<version>` folder, launch ade-xjc with the following command.
 
-    % java -jar ade-xjc.jar -clean -binding sample/binding.xjb -output sample src-gen -package ade.sub.jaxb sample/CityGML-SubsurfaceADE-0_9_0.xsd
+    % java -jar ade-xjc.jar -clean -binding sample/binding.xjb -output sample/src-gen -package ade.sub.jaxb sample/CityGML-SubsurfaceADE-0_9_0.xsd
 
 This will compile the `CityGML-SubsurfaceADE-0_9_0.xsd` schema to JAXB classes that are generated in the folder `sample/src-gen`. If you are running ade-xjc with Java 8, you will have to allow access to external XSD files by adding the following JVM argument to the above command.
 
@@ -65,3 +65,7 @@ ade-xjc is designed to be used with citygml4j. During compilation of the ADE Sch
 The intended scenario is to use citygml4j to parse or write a CityGML instance document with ADE content. citygml4j provides the class `ADEComponent` that will give you access to the ADE content through an `org.w3c.dom.Element` DOM object. You can either manually parse or create this DOM element or, more conveniently, use the JAXB classes generated with ade-xjc for this purpose. 
 
 citygml4j comes with a sample program that illustrates this scenario. The sample program is available in the subfolder `citygml4j-<version>/samples/handling_ade/unmarshalling_ade_using_jaxb` where you built the citygml4j library.
+
+Note that you need to check which version of citygml4j is supposed by your version of ade-xjc. Use the following command to find out.
+
+    % java -jar ade-xjc.jar -version

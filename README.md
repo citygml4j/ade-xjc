@@ -66,7 +66,7 @@ For convience, an Ant `build.xml` file is available in the `ade-xjc-<version>/sa
 
 Using the generated JAXB classes
 --------------------------------
-ade-xjc is designed to be used with citygml4j. During compilation of the ADE Schema, ade-xjc ensures that the resulting JAXB classes perfectly harmonize with the JAXB classes that are shipped with citygml4j and that map the official CityGML, GML and xAL schemas. As a consequence, the citygml4j library needs to be on your classpath in order to use the generated JAXB classes.
+ade-xjc is designed to be used with citygml4j. During compilation of the ADE Schema, ade-xjc ensures that the resulting JAXB classes perfectly combine with the JAXB classes that are shipped with citygml4j and that map the official CityGML, GML and xAL schemas. As a consequence, the citygml4j library needs to be on your classpath in order to use the generated JAXB classes.
 
 The intended scenario is to use citygml4j to parse or write a CityGML instance document with ADE content. citygml4j provides the class `ADEComponent` that will give you access to the ADE content through an `org.w3c.dom.Element` DOM object. You can either manually parse or create this DOM element or, more conveniently, use the JAXB classes generated with ade-xjc for this purpose. 
 

@@ -214,7 +214,7 @@ public class ADE_XJC {
 			BigInteger md5 = new BigInteger("0");
 			md5 = Util.dir2md5(schema_dir, md5);
 
-			if (!md5.toString(16).equals("629fda1c186b5d40b265309ccb04d86"))
+			if (!md5.toString(16).equals("7c0d5a2c3b146528e929d321345239c"))
 				throw new Exception("Contents of subfolder 'schemas' have been altered. Please restore its original state.");
 		}
 		

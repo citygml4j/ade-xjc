@@ -9,7 +9,9 @@ ade-xjc is free software under the [GNU LGPL Version 3.0](http://www.gnu.org/lic
 
 Latest release
 --------------
-The latest stable release of ade-xjc is 2.2.
+The latest stable release of ade-xjc is 2.2.1.
+
+Download the ade-xjc 2.2.1 release binariers [here](https://github.com/citygml4j/ade-xjc/releases/download/v2.2.1/ade-xjc-2.2.1.zip). Previous releases are available from the [releases section](https://github.com/citygml4j/ade-xjc/releases).
 
 Contributing
 ------------

@@ -3,7 +3,7 @@
 
 	<!-- application specific variables -->
 	<property name="app.name" value="ade-xjc" />
-	<property name="app.version" value="2.2" />
+	<property name="app.version" value="2.2.1" />
 	<property name="app.jar" value="${app.name}.jar" />
 	<property name="app.title" value="XML Schema binding compiler for CityGML ADEs" />
 	<property name="app.manifest.title" value="${app.title}; use with citygml4j version ${app.version}" />

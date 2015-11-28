@@ -114,7 +114,7 @@
 				<attribute name="Built-Id" value="${user.name}-${app.name}-${app.version}" />
 				<attribute name="Built-Date" value="${TODAY}" />
 				<attribute name="Implementation-Title" value="${app.manifest.title}" />
-				<attribute name="Implementation-Version" value="${app.version}-b${build.number}" />
+				<attribute name="Implementation-Version" value="${app.version}+${build.number}" />
 				<attribute name="Class-Path" value="${manifest.classpath}" />
 				<attribute name="Main-Class" value="${app.class}" />
 			</manifest>

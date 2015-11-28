@@ -35,6 +35,7 @@ import org.kohsuke.args4j.Argument;
 import org.kohsuke.args4j.CmdLineException;
 import org.kohsuke.args4j.CmdLineParser;
 import org.kohsuke.args4j.Option;
+import org.kohsuke.args4j.ParserProperties;
 import org.xml.sax.InputSource;
 
 import com.sun.codemodel.JCodeModel;
@@ -83,8 +84,7 @@ public class ADE_XJC {
 	}
 
 	private void doMain(String[] args) {
-		CmdLineParser parser = new CmdLineParser(this);
-		parser.setUsageWidth(80);
+		CmdLineParser parser = new CmdLineParser(this, ParserProperties.defaults().withUsageWidth(80));
 
 		List<String> tmp = new ArrayList<String>();
 		for (String arg : args)

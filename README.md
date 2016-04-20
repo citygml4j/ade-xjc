@@ -5,13 +5,17 @@ ade-xjc is a command line tool and wrapper for the XML Schema binding compiler `
 
 License
 -------
-ade-xjc is free software under the [GNU LGPL Version 3.0](http://www.gnu.org/licenses/lgpl.html). See the `LICENSE.txt` file for more details.
+ade-xjc is licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0). See the `LICENSE` file for more details.
+
+All releases before 2.3 were distributed under GNU LGPL Version 3.0. To request a release before 2.3 under Apache 2.0 create a GitHub issue.
 
 Latest release
 --------------
 The latest stable release of ade-xjc is 2.2.2.
 
 Download the ade-xjc 2.2.2 release binariers [here](https://github.com/citygml4j/ade-xjc/releases/download/v2.2.2/ade-xjc-2.2.2.zip). Previous releases are available from the [releases section](https://github.com/citygml4j/ade-xjc/releases).
+
+Note that ade-xjc is also bundled with citygml4j.
 
 Contributing
 ------------

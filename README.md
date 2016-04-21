@@ -11,9 +11,9 @@ Note that previous versions of the software continue to be licensed under GNU LG
 
 Latest release
 --------------
-The latest stable release of ade-xjc is 2.2.2.
+The latest stable release of ade-xjc is 2.3.0.
 
-Download the ade-xjc 2.2.2 release binariers [here](https://github.com/citygml4j/ade-xjc/releases/download/v2.2.2/ade-xjc-2.2.2.zip). Previous releases are available from the [releases section](https://github.com/citygml4j/ade-xjc/releases).
+Download the ade-xjc 2.3.0 release binariers [here](https://github.com/citygml4j/ade-xjc/releases/download/v2.3.0/ade-xjc-2.3.0.zip). Previous releases are available from the [releases section](https://github.com/citygml4j/ade-xjc/releases).
 
 Note that ade-xjc is also bundled with citygml4j.
 
@@ -84,5 +84,5 @@ Note that you need to check which version of citygml4j is supposed by your versi
 
 The output will look similar to this:
 
-    ade-xjc version 2.2.2+1
-    XML Schema binding compiler for CityGML ADEs; use with citygml4j version 2.2.2
+    ade-xjc version 2.3.0+1
+    XML Schema binding compiler for CityGML ADEs; use with citygml4j version 2.3.0

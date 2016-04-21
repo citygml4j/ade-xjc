@@ -7,7 +7,7 @@ License
 -------
 ade-xjc is licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0). See the `LICENSE` file for more details.
 
-Note that previous versions of the software continue to be licensed under GNU LGPL 3.0 license. To request a version of ade-xjc before 2.3 under Apache 2.0 create a GitHub issue.
+Note that versions of the software before 2.3.0 continue to be licensed under GNU LGPL 3.0 license. To request a previous of ade-xjc under Apache 2.0 create a GitHub issue.
 
 Latest release
 --------------

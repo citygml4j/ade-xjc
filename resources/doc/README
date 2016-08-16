@@ -57,7 +57,7 @@ in your application.
 4. System requirements
 ----------------------
 
-* Java JRE or JDK >= 1.7 to launch the !app.name! binding compiler
+* Java JRE or JDK >= 1.8 to launch the !app.name! binding compiler
 * citygml4j v!app.version! to use the generated JAXB classes
 
 

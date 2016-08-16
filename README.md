@@ -1,7 +1,7 @@
 ade-xjc
 =======
 
-ade-xjc is a command line tool and wrapper for the XML Schema binding compiler `xjc` shipped with [JAXB](https://jaxb.java.net/). ade-xjc compiles arbitrary CityGML Application Domain Extension (ADE) schemas to a set of corresponding JAXB classes to be used with citygml4j. 
+ade-xjc is a command line tool and wrapper for the XML Schema binding compiler `xjc` shipped with [JAXB](https://jaxb.java.net/). ade-xjc compiles arbitrary CityGML Application Domain Extension (ADE) schemas to a set of corresponding JAXB classes to be used with [citygml4j](https://github.com/citygml4j/citygml4j). 
 
 License
 -------
@@ -11,9 +11,9 @@ Note that releases of the software before version 2.3.0 continue to be licensed 
 
 Latest release
 --------------
-The latest stable release of ade-xjc is 2.3.1.
+The latest stable release of ade-xjc is 2.4.0.
 
-Download the ade-xjc 2.3.1 release binariers [here](https://github.com/citygml4j/ade-xjc/releases/download/v2.3.1/ade-xjc-2.3.1.zip). Previous releases are available from the [releases section](https://github.com/citygml4j/ade-xjc/releases).
+Download the ade-xjc 2.4.0 release binariers [here](https://github.com/citygml4j/ade-xjc/releases/download/v2.4.0/ade-xjc-2.4.0.zip). Previous releases are available from the [releases section](https://github.com/citygml4j/ade-xjc/releases).
 
 Note that ade-xjc is also bundled with citygml4j.
 
@@ -25,7 +25,7 @@ Contributing
 
 Building
 --------
-ade-xjc depends on JRE 7 or higher. The project uses [Apache Ant](http://ant.apache.org/) as build tool. To build the program, run the `build.xml` file from the root of the repository with `dist` as target. 
+ade-xjc depends on JRE 8 or higher. The project uses [Apache Ant](http://ant.apache.org/) as build tool. To build the program, run the `build.xml` file from the root of the repository with `dist` as target. 
 
     % ant dist
 
@@ -64,7 +64,7 @@ From within the `ade-xjc-<version>` folder, launch ade-xjc with the following co
     % java -jar ade-xjc.jar -clean -binding sample/binding.xjb -output sample/src-gen 
     -package ade.sub.jaxb sample/CityGML-SubsurfaceADE-0_9_0.xsd
 
-This will compile the `CityGML-SubsurfaceADE-0_9_0.xsd` schema to JAXB classes that are generated in the folder `sample/src-gen`. If you are running ade-xjc with Java 8, you will have to allow access to external XSD files by adding the following JVM argument to the above command.
+This will compile the `CityGML-SubsurfaceADE-0_9_0.xsd` schema to JAXB classes that are generated in the folder `sample/src-gen`. Due to Java 8 XML security properties, you will have to allow access to external XSD files, for instance, by adding the following JVM argument to the above command.
 
     -Djavax.xml.accessExternalSchema=file
 
@@ -84,5 +84,5 @@ Note that you need to check which version of citygml4j is supposed by your versi
 
 The output will look similar to this:
 
-    ade-xjc version 2.3.1+1
-    XML Schema binding compiler for CityGML ADEs; use with citygml4j version 2.3.1
+    ade-xjc version 2.4.0+1
+    XML Schema binding compiler for CityGML ADEs; use with citygml4j version 2.4.0

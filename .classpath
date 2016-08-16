@@ -7,6 +7,6 @@
 	<classpathentry kind="lib" path="lib/jaxb-core.jar"/>
 	<classpathentry kind="lib" path="lib/jaxb-impl.jar"/>
 	<classpathentry kind="lib" path="lib/jaxb-xjc.jar"/>
-	<classpathentry kind="lib" path="lib/args4j-2.32.jar"/>
+	<classpathentry kind="lib" path="lib/args4j-2.33.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

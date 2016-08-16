@@ -25,7 +25,7 @@ Contributing
 
 Building
 --------
-ade-xjc depends on JRE 8 or higher. The project uses [Apache Ant](http://ant.apache.org/) as build tool. To build the program, run the `build.xml` file from the root of the repository with `dist` as target. 
+ade-xjc depends on JRE 8. The project uses [Apache Ant](http://ant.apache.org/) as build tool. To build the program, run the `build.xml` file from the root of the repository with `dist` as target. 
 
     % ant dist
 

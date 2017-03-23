@@ -22,14 +22,20 @@ package org.citygml4j.ade_xjc;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.math.BigInteger;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.ServiceLoader;
+import java.util.stream.Collectors;
 
 import org.kohsuke.args4j.Argument;
 import org.kohsuke.args4j.CmdLineException;
@@ -39,9 +45,12 @@ import org.kohsuke.args4j.ParserProperties;
 import org.xml.sax.InputSource;
 
 import com.sun.codemodel.JCodeModel;
+import com.sun.tools.xjc.Options;
+import com.sun.tools.xjc.Plugin;
 import com.sun.tools.xjc.api.S2JJAXBModel;
 import com.sun.tools.xjc.api.SchemaCompiler;
 import com.sun.tools.xjc.api.XJC;
+import com.sun.tools.xjc.api.impl.s2j.SchemaCompilerImpl;
 
 public class ADE_XJC {
 	private SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss"); 
@@ -58,13 +67,13 @@ public class ADE_XJC {
 	@Argument
 	private List<String> adeSchemaFileList = new ArrayList<String>();
 
-	@Option(name="-package", usage="package for the ADE JAXB classes (default: 'ade')", metaVar="<packageName>")
+	@Option(name="-package", usage="package for the ADE JAXB classes", metaVar="<packageName>")
 	private String packageName = "ade";
 
 	@Option(name="-binding", usage="optional JAXB binding file for ADE XML Schema", metaVar="<fileName>")
 	private File adeBindingFile = null;
 	
-	@Option(name="-output", usage="output folder (default: 'src-gen')", metaVar="<folderName>")
+	@Option(name="-output", usage="output folder", metaVar="<folderName>")
 	private File outputFolder = new File("src-gen");
 
 	@Option(name="-non-strict", usage="allow changes to contents of subfolder 'schemas'")
@@ -79,23 +88,19 @@ public class ADE_XJC {
 	@Option(name="-version", usage="print product version and exit")
 	private boolean version;
 
+	@Option(name="-X{arg}", usage="one or more arguments for JAXB plugins")
+	private Boolean dummy = null;
+	
 	public static void main(String[] args) {
 		new ADE_XJC().doMain(args);
 	}
 
-	private void doMain(String[] args) {
+	private void doMain(String[] tmp) {
 		CmdLineParser parser = new CmdLineParser(this, ParserProperties.defaults().withUsageWidth(80));
-
-		List<String> tmp = new ArrayList<String>();
-		for (String arg : args)
-			tmp.addAll(Arrays.asList(arg.split(" +")));
-		
-		String[] newArgs = new String[tmp.size()];
-		for (int i = 0; i < tmp.size(); i++)
-			newArgs[i] = tmp.get(i);
+		Map<Boolean, List<String>> args = Arrays.stream(tmp).collect(Collectors.partitioningBy(arg -> !arg.startsWith("-X")));
 		
 		try {
-			parser.parseArgument(newArgs);			
+			parser.parseArgument(args.get(Boolean.TRUE));			
 		} catch (CmdLineException e) {
 			System.err.println(e.getMessage());
 			printUsage(parser, System.err);
@@ -133,9 +138,9 @@ public class ADE_XJC {
 			log(LogLevel.INFO, "Setting up build environment");
 			checkBuildEnvironment();
 			
-			if (clean) {
+			if (clean && Files.exists(outputFolder.toPath())) {
 				log(LogLevel.INFO, "Cleaning output folder");
-				Util.rmdir(outputFolder, true);
+				Files.walkFileTree(outputFolder.toPath(), new FileDeleter(true));
 			}
 				
 			createBuildEnvironment();
@@ -151,14 +156,32 @@ public class ADE_XJC {
 				log(LogLevel.INFO, "Using JAXB binding " + adeBindingFile.getCanonicalFile());
 			
 			log(LogLevel.INFO, "Using Java package " + packageName + " for JAXB classes");
-			log(LogLevel.INFO, "Generating JAXB classes. This may take some time...");
 			
 			SchemaCompiler sc = XJC.createSchemaCompiler();
 			sc.setDefaultPackageName(packageName);
 			
+			if (!args.get(Boolean.FALSE).isEmpty()) {
+				log(LogLevel.INFO, "Loading and configuring JAXB plugins");
+				String[] pluginArgs = args.get(Boolean.FALSE).stream().toArray(String[]::new);
+				Options options = ((SchemaCompilerImpl)sc).getOptions();
+
+				ServiceLoader<Plugin> plugins = ServiceLoader.load(Plugin.class);
+				for (Plugin plugin : plugins) {
+					for (int i = 0; i < pluginArgs.length; i++) {
+						if (('-' + plugin.getOptionName()).equals(pluginArgs[i])) {
+							options.activePlugins.add(plugin);
+							plugin.onActivated(options);
+						}
+						
+						plugin.parseArgument(options, pluginArgs, i);
+					}
+				}
+			}
+			
 			XJCErrorListener listener = new XJCErrorListener();
 			sc.setErrorListener(listener);
 
+			log(LogLevel.INFO, "Generating JAXB classes. This may take some time...");
 			sc.parseSchema(new InputSource(baseProfileFile.toURI().toString()));
 			sc.parseSchema(new InputSource(bindingFile.toURI().toString()));
 			sc.parseSchema(new InputSource(adeSchemaFile.toURI().toString()));
@@ -178,11 +201,13 @@ public class ADE_XJC {
 			
 			log(LogLevel.ERROR, "Unable to recover from previous error(s). Aborting.");
 			status = 1;
-			
-			if (clean)
-				Util.rmdir(outputFolder, true);
 		} finally {
-			cleanBuildEnvironment();
+			try {
+				cleanBuildEnvironment(status == 1);
+			} catch (IOException e) {
+				log(LogLevel.ERROR, "Failed to clean build environment.");
+				status = 1;
+			}
 		}
 
 		System.exit(status);
@@ -206,7 +231,7 @@ public class ADE_XJC {
 
 	private void checkBuildEnvironment() throws Exception, FileNotFoundException, NoSuchAlgorithmException {
 		if (!schema_dir.exists())
-			throw new FileNotFoundException("Could not open folder " + schema_dir.getAbsolutePath());
+			throw new FileNotFoundException("Failed to open folder " + schema_dir.getAbsolutePath());
 
 		if (!nonStrict) {
 			log(LogLevel.INFO, "Running in strict mode. Checking sanity of subfolder 'schemas'");
@@ -225,14 +250,19 @@ public class ADE_XJC {
 			throw new Exception("Could not open ADE binding file " + adeBindingFile.getAbsolutePath());
 	}
 
-	private void cleanBuildEnvironment() {
-		Util.rmdir(new File(outputFolder.getAbsolutePath() + "/net/opengis/citygml"), true);
-		Util.rmdir(new File(outputFolder.getAbsolutePath() + "/net/opengis/gml"), true);
-		Util.rmdir(new File(outputFolder.getAbsolutePath() + "/net"), false);
-		Util.rmdir(new File(outputFolder.getAbsolutePath() + "/oasis"), true);
-
-		if (!packageName.startsWith("org"))
-			Util.rmdir(new File(outputFolder.getAbsolutePath() + "/org"), true);
+	private void cleanBuildEnvironment(boolean cleanAll) throws IOException {
+		if (!cleanAll) {
+			Files.walkFileTree(Paths.get(outputFolder.getAbsolutePath(), "net/opengis/citygml"), new FileDeleter(true));
+			Files.walkFileTree(Paths.get(outputFolder.getAbsolutePath(), "net/opengis/gml"), new FileDeleter(true));
+			Files.walkFileTree(Paths.get(outputFolder.getAbsolutePath(), "oasis/names/tc/ciq/xsdschema/xal/_2"), new FileDeleter(true));
+			Files.walkFileTree(Paths.get(outputFolder.getAbsolutePath(), "org/citygml4j"), new FileDeleter(true));
+			Files.walkFileTree(Paths.get(outputFolder.getAbsolutePath(), "org/w3/_1999/xlink"), new FileDeleter(true));
+			Files.walkFileTree(Paths.get(outputFolder.getAbsolutePath(), "org/w3/_2001/smil20"), new FileDeleter(true));
+			Files.walkFileTree(Paths.get(outputFolder.getAbsolutePath(), "net"), new FileDeleter(true, true));
+			Files.walkFileTree(Paths.get(outputFolder.getAbsolutePath(), "org"), new FileDeleter(true, true));
+			Files.walkFileTree(Paths.get(outputFolder.getAbsolutePath(), "oasis"), new FileDeleter(true, true));
+		} else
+			Files.walkFileTree(outputFolder.toPath(), new FileDeleter(true));
 	}
 
 	private void printUsage(CmdLineParser parser, PrintStream out) {

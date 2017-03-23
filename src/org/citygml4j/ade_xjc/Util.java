@@ -88,21 +88,5 @@ public class Util {
 
 		return md5.xor(new BigInteger(1, md5sum));
 	}
-
-	public static void rmdir(File folder, boolean force) {
-		if (!folder.exists())
-			return;
-
-		File[] children = folder.listFiles();
-
-		for (File file : children) {
-			if (file.isDirectory())
-				rmdir(file, force);
-
-			if (force)
-				file.delete();
-		}
-
-		folder.delete();
-	}
+	
 }

@@ -57,7 +57,7 @@
 
 	<!-- classpath -->
 	<path id="classpath">
-		<fileset dir="lib" includes="*.jar" />
+		<fileset dir="lib" includes="**/*.jar" />
 	</path>
 
 	<tstamp>
@@ -79,13 +79,18 @@
 		<mkdir dir="${build.classes}" />
 
 		<!-- compile the java code from ${src} and ${src-gen} into ${build} -->
-		<javac classpathref="classpath" srcdir="${src}" destdir="${build.classes}" />
+		<javac includeantruntime="false" classpathref="classpath" srcdir="${src}" destdir="${build.classes}" />
 	</target>
 
 	<target name="dist" depends="clean, compile" description="generate the distribution">
 		<!-- create the distribution directory -->
 		<delete dir="${dist}" />
 		<mkdir dir="${dist}" />
+
+		<!-- copy mandatory dependencies -->
+		<copy toDir="${dist.lib}" flatten="true">
+			<fileset dir="${lib}" includes="**/*.jar" />
+		</copy>
 
 		<!-- copy LICENSE file -->
 		<copy todir="${dist.license}">
@@ -123,10 +128,12 @@
 		<buildnumber file="build.num" />
 
 		<!-- set package variables -->
-		<pathconvert property="manifest.classpath" dirsep="/" pathsep=" " refid="classpath">
-			<map from="${basedir}${file.separator}lib${file.separator}" to="lib${file.separator}" />
+		<fileset dir="${dist.lib}" id="lib.files">
+			<include name="*.jar" />
+		</fileset>
+		<pathconvert property="manifest.classpath" dirsep="/" pathsep=" " refid="lib.files">
+			<map from="${dist}${file.separator}lib${file.separator}" to="lib${file.separator}" />
 		</pathconvert>
-		<buildnumber file="build.num" />
 
 		<!-- put everything in ${build} into .jar file -->
 		<jar jarfile="${dist}/${app.jar}" basedir="${build.classes}" filesetmanifest="mergewithoutmain">
@@ -141,11 +148,6 @@
 			<fileset dir="${dist}" includes="README" />
 			<fileset dir="${dist.license}" includes="**/*" />
 		</jar>
-
-		<!-- copy mandatory dependencies -->
-		<copy toDir="${dist.lib}">
-			<fileset dir="${lib}" includes="*.jar" />
-		</copy>
 
 		<!-- clean up template dir -->
 		<delete dir="${build}" />

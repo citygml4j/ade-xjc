@@ -95,9 +95,13 @@ public class ADE_XJC {
 		new ADE_XJC().doMain(args);
 	}
 
-	private void doMain(String[] tmp) {
+	private void doMain(String[] _args) {
+		List<String> tmp = new ArrayList<String>();
+		for (String arg : _args)
+			tmp.addAll(Arrays.asList(arg.split(" +")));
+		
+		Map<Boolean, List<String>> args = tmp.stream().collect(Collectors.partitioningBy(arg -> !arg.startsWith("-X")));
 		CmdLineParser parser = new CmdLineParser(this, ParserProperties.defaults().withUsageWidth(80));
-		Map<Boolean, List<String>> args = Arrays.stream(tmp).collect(Collectors.partitioningBy(arg -> !arg.startsWith("-X")));
 		
 		try {
 			parser.parseArgument(args.get(Boolean.TRUE));			

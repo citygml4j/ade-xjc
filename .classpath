@@ -2,22 +2,11 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="lib/args4j/args4j-2.33.jar"/>
-	<classpathentry kind="lib" path="lib/jaxb/jaxb-core.jar"/>
-	<classpathentry kind="lib" path="lib/jaxb/jaxb-impl.jar"/>
-	<classpathentry kind="lib" path="lib/jaxb/jaxb-xjc.jar"/>
-	<classpathentry kind="lib" path="lib/xerces/xercesImpl.jar"/>
-	<classpathentry kind="lib" path="lib/xerces/xml-apis.jar"/>
-	<classpathentry kind="lib" path="lib/jaxb2-basics/commons-beanutils-1.9.2.jar"/>
-	<classpathentry kind="lib" path="lib/jaxb2-basics/commons-collections-3.2.1.jar"/>
-	<classpathentry kind="lib" path="lib/jaxb2-basics/commons-lang3-3.2.1.jar"/>
-	<classpathentry kind="lib" path="lib/jaxb2-basics/javaparser-1.0.11.jar"/>
-	<classpathentry kind="lib" path="lib/jaxb2-basics/jaxb2-basics-0.11.1.jar"/>
-	<classpathentry kind="lib" path="lib/jaxb2-basics/jaxb2-basics-runtime-0.11.1.jar"/>
-	<classpathentry kind="lib" path="lib/jaxb2-basics/jaxb2-basics-tools-0.11.1.jar"/>
-	<classpathentry kind="lib" path="lib/jaxb2-basics/jcl-over-slf4j-1.7.7.jar"/>
-	<classpathentry kind="lib" path="lib/jaxb2-basics/slf4j-api-1.7.7.jar"/>
-	<classpathentry kind="lib" path="lib/jaxb2-basics/slf4j-simple-1.7.7.jar"/>
-	<classpathentry kind="lib" path="lib/jaxb2-namespace-prefix/jaxb2-namespace-prefix-1.1.jar"/>
+	<classpathentry kind="lib" path="lib/args4j-2.33.jar"/>
+	<classpathentry kind="lib" path="lib/jaxb-core.jar"/>
+	<classpathentry kind="lib" path="lib/jaxb-impl.jar"/>
+	<classpathentry kind="lib" path="lib/jaxb-xjc.jar"/>
+	<classpathentry kind="lib" path="lib/xercesImpl.jar"/>
+	<classpathentry kind="lib" path="lib/xml-apis.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

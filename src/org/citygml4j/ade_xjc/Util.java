@@ -27,6 +27,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigInteger;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.file.Path;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -87,6 +90,26 @@ public class Util {
 		byte[] md5sum = digest.digest(input.getBytes());
 
 		return md5.xor(new BigInteger(1, md5sum));
+	}
+	
+	public static class URLClassLoader extends java.net.URLClassLoader {
+		protected URLClassLoader() {
+			super(new URL[]{}, Util.class.getClassLoader());
+		}
+
+		@Override
+		protected void addURL(URL url) {
+			super.addURL(url);
+		}
+		
+		protected void addPath(Path path) {
+			try {
+				super.addURL(path.toUri().toURL());
+			} catch (MalformedURLException e) {
+				// 
+			}
+		}
+
 	}
 	
 }

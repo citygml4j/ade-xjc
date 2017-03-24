@@ -39,6 +39,7 @@
 	<property name="src" location="src" />
 	<property name="lib" location="lib" />
 	<property name="schemas" location="schemas" />
+	<property name="jaxb-plugins" location="jaxb-plugins" />
 
 	<property name="sample" location="sample" />
 
@@ -53,11 +54,12 @@
 	<property name="dist.lib" location="${dist}/lib" />
 	<property name="dist.license" location="${dist}/license" />
 	<property name="dist.schemas" location="${dist}/schemas" />
+	<property name="dist.jaxb-plugins" location="${dist}/jaxb-plugins" />
 	<property name="dist.sample" location="${dist}/sample" />
 
 	<!-- classpath -->
 	<path id="classpath">
-		<fileset dir="lib" includes="**/*.jar" />
+		<fileset dir="lib" includes="*.jar" />
 	</path>
 
 	<tstamp>
@@ -125,14 +127,16 @@
 			<fileset dir="${schemas}" includes="**/*" />
 		</copy>
 
+		<!-- copy jaxb-plugins files -->
+		<copy todir="${dist.jaxb-plugins}">
+			<fileset dir="${jaxb-plugins}" includes="**/*" />
+		</copy>
+				
 		<buildnumber file="build.num" />
 
 		<!-- set package variables -->
-		<fileset dir="${dist.lib}" id="lib.files">
-			<include name="*.jar" />
-		</fileset>
-		<pathconvert property="manifest.classpath" dirsep="/" pathsep=" " refid="lib.files">
-			<map from="${dist}${file.separator}lib${file.separator}" to="lib${file.separator}" />
+		<pathconvert property="manifest.classpath" dirsep="/" pathsep=" " refid="classpath">
+			<map from="${basedir}${file.separator}lib${file.separator}" to="lib${file.separator}" />
 		</pathconvert>
 
 		<!-- put everything in ${build} into .jar file -->

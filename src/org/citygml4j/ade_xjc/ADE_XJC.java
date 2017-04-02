@@ -209,7 +209,7 @@ public class ADE_XJC {
 			JCodeModel code = model.generateCode(null, listener);
 
 			// write classes using a header comment
-			PrologCodeWriter writer = new PrologCodeWriter(new FileCodeWriter(outputFolder), 
+			PrologCodeWriter writer = new PrologCodeWriter(new FileCodeWriter(outputFolder, "UTF-8"), 
 					"Generated with ade-xjc - XML Schema binding compiler for CityGML ADEs, version " + this.getClass().getPackage().getImplementationVersion() + "\n"
 							+ "ade-xjc is part of the citygml4j project, see https://github.com/citygml4j\n"
 							+ "Any modifications to this file will be lost upon recompilation of the source\n"

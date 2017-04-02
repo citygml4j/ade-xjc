@@ -48,6 +48,8 @@ import org.kohsuke.args4j.ParserProperties;
 import org.xml.sax.InputSource;
 
 import com.sun.codemodel.JCodeModel;
+import com.sun.codemodel.writer.FileCodeWriter;
+import com.sun.codemodel.writer.PrologCodeWriter;
 import com.sun.tools.xjc.Options;
 import com.sun.tools.xjc.Plugin;
 import com.sun.tools.xjc.api.S2JJAXBModel;
@@ -177,7 +179,7 @@ public class ADE_XJC {
 				try (Stream<Path> stream = Files.walk(plugins_dir).filter(path -> path.getFileName().toString().toLowerCase().endsWith(".jar"))) {
 					stream.forEach(path -> loader.addPath(path));
 				}
-				
+
 				ServiceLoader<Plugin> plugins = ServiceLoader.load(Plugin.class, loader);				
 				for (Plugin plugin : plugins) {
 					for (int i = 0; i < pluginArgs.length; i++) {
@@ -205,7 +207,14 @@ public class ADE_XJC {
 
 			S2JJAXBModel model = sc.bind();
 			JCodeModel code = model.generateCode(null, listener);
-			code.build(outputFolder, (PrintStream)null);
+
+			// write classes using a header comment
+			PrologCodeWriter writer = new PrologCodeWriter(new FileCodeWriter(outputFolder), 
+					"Generated with ade-xjc - XML Schema binding compiler for CityGML ADEs, version " + this.getClass().getPackage().getImplementationVersion() + "\n"
+							+ "ade-xjc is part of the citygml4j project, see https://github.com/citygml4j\n"
+							+ "Any modifications to this file will be lost upon recompilation of the source\n"
+							+ "Generated: " + new Date().toString() + "\n");
+			code.build(writer);
 
 			File packageDir = new File(outputFolder.getAbsolutePath());
 			log(LogLevel.INFO, "JAXB classes successfully written to " + packageDir.getCanonicalPath());	

@@ -64,7 +64,7 @@ The following JAXB plugins are already included and shipped with ade-xjc:
 - [JAXB2 Basics Plugins](https://github.com/highsource/jaxb2-basics)
 - [jaxb2-namespace-prefix](https://github.com/Siggen/jaxb2-namespace-prefix)
 
-For example, if you want to augment your generated JAXB classes with setters for collections then you can use the `Setters Plugin` of the JAXB2 Plugins project. This plugin is activated by the `-Xsetters` command line option and is documented [here](https://github.com/highsource/jaxb2-basics/wiki/JAXB2-Setters-Plugin). The following example shows how use this plugin with ade-xjc.
+For example, if you want to augment your generated JAXB classes with setters for collections then you can use the `Setters Plugin` of the JAXB2 Basics Plugins project. This plugin is activated by the `-Xsetters` command line option and is documented [here](https://github.com/highsource/jaxb2-basics/wiki/JAXB2-Setters-Plugin). The following example shows how use this plugin with ade-xjc.
 
     % java -jar ade-xjc.jar -Xsetters -Xsetters-mode=direct /home/user/ade/CityGMLADE.xsd
 

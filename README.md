@@ -98,5 +98,5 @@ Note that you need to check which version of citygml4j is supposed by your versi
 
 The output will look similar to this:
 
-    ade-xjc version 2.4.2+1
-    XML Schema binding compiler for CityGML ADEs; use with citygml4j version 2.4.2
+    ade-xjc version 2.4.3+1
+    XML Schema binding compiler for CityGML ADEs; use with citygml4j version 2.4.3

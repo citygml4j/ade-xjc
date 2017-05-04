@@ -11,9 +11,9 @@ Note that releases of the software before version 2.3.0 continue to be licensed 
 
 Latest release
 --------------
-The latest stable release of ade-xjc is 2.4.2.
+The latest stable release of ade-xjc is 2.4.3.
 
-Download the ade-xjc 2.4.2 release binariers [here](https://github.com/citygml4j/ade-xjc/releases/download/v2.4.2/ade-xjc-2.4.2.zip). Previous releases are available from the [releases section](https://github.com/citygml4j/ade-xjc/releases).
+Download the ade-xjc 2.4.3 release binariers [here](https://github.com/citygml4j/ade-xjc/releases/download/v2.4.3/ade-xjc-2.4.3.zip). Previous releases are available from the [releases section](https://github.com/citygml4j/ade-xjc/releases).
 
 Note that ade-xjc is also bundled with citygml4j.
 
@@ -30,6 +30,7 @@ ade-xjc depends on JRE 8. The project uses [Apache Ant](http://ant.apache.org/) 
     % ant dist
 
 This will create a folder `ade-xjc-<version>` containing the `ade-xjc.jar` executable and the following subfolders:
+* `jaxb-plugins` -- optional JAXB plugins that can be used in the schema compilation
 * `lib` -- mandatory dependencies of ade-xjc
 * `license` -- license information
 * `sample` -- a sample CityGML ADE that you may use for testing
@@ -54,6 +55,19 @@ To control the compilation process, ade-xjc offers the following program argumen
 |`help`, `h` | Prints a help message to the console
 
 Note that the ade-xjc binding compiler requires that your ADE schema points to the official CityGML and GML schemas provided in the subfolder `schemas`. So please adapt all `<xs:import>` statements in your ADE schema accordingly before launching ade-xjc.
+
+Using JAXB plugins
+------------------
+Starting from version 2.4.3, ade-xjc allows you to use JAXB plugins in the ADE Schema compilation. Simply put the JAXB plugin you want to use into the `jaxb-plugins` subfolder and provide the plugin-specific command line arguments when executing ade-xjc. Please refer to the documentation of the JAXB plugin to learn which command line arguments are available and how to use them.
+
+The following JAXB plugins are already included and shipped with ade-xjc:
+- [JAXB2 Basics Plugins](https://github.com/highsource/jaxb2-basics)
+- [jaxb2-namespace-prefix](https://github.com/Siggen/jaxb2-namespace-prefix)
+
+For example, if you want to augment your generated JAXB classes with setters for collections then you can use the `Setters Plugin` of the JAXB2 Plugins project. This plugin is activated by the `-Xsetters` command line option and is documented [here](https://github.com/highsource/jaxb2-basics/wiki/JAXB2-Setters-Plugin). The following example shows how use this plugin with ade-xjc.
+
+    % java -jar ade-xjc.jar -Xsetters -Xsetters-mode=direct /home/user/ade/CityGMLADE.xsd
+
 
 Sample ADE Schema compilation
 -----------------------------

@@ -23,12 +23,12 @@
 
 	<!-- application specific variables -->
 	<property name="app.name" value="ade-xjc" />
-	<property name="app.version" value="2.4.2" />
+	<property name="app.version" value="2.4.3" />
 	<property name="app.jar" value="${app.name}.jar" />
 	<property name="app.title" value="XML Schema binding compiler for CityGML ADEs" />
 	<property name="app.manifest.title" value="${app.title}; use with citygml4j version ${app.version}" />
 	<property name="app.class" value="org.citygml4j.ade_xjc.ADE_XJC" />
-	<property name="copyright.year" value="2013-2016" />
+	<property name="copyright.year" value="2013-2017" />
 	<property name="copyright.owner" value="Claus Nagel" />
 	<property name="copyright.owner.email" value="claus.nagel@gmail.com" />
 	<property name="developer.main.name" value="Claus Nagel" />

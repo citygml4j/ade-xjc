@@ -1,0 +1,77 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
+group 'org.citygml4j'
+version '2.6.1-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'application'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+mainClassName = 'org.citygml4j.ade_xjc.ADESchemaCompiler'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    date = new Date()
+}
+
+dependencies {
+    compile 'args4j:args4j:2.33'
+    compile 'com.sun.xml.bind:jaxb-jxc:2.2.7'
+}
+
+jar {
+    manifest {
+        attributes('Implementation-Title': project.name,
+                'Implementation-Version': project.version,
+                'Main-Class': mainClassName)
+    }
+    into('META-INF') {
+        from 'LICENSE'
+    }
+}
+
+startScripts {
+    defaultJvmOpts = ['-Djavax.xml.accessExternalSchema=file']
+    doLast {
+        def windowsScript = getWindowsScript()
+        def unixScript = getUnixScript()
+        windowsScript.text = windowsScript.text.replaceFirst('set APP_HOME=.*', '$0\r\nset WORKING_DIR=%CD%')
+        unixScript.text = unixScript.text.replaceFirst('APP_HOME=.*', '$0\nexport APP_HOME\nexport WORKING_DIR=\\$SAVED')
+    }
+}
+
+distributions {
+    main {
+        contents {
+            from('resources/doc/README') {
+                filter(ReplaceTokens, tokens: [
+                        version: project.version,
+                        date: date.format('yyy-MM-dd'),
+                        copyright: date.format('yyyy'),
+                        javaCompatibility: sourceCompatibility.toString(),
+                        jar: jar.archiveName
+                ])
+            }
+            into('jaxb-plugins') {
+                from 'jaxb-plugins'
+            }
+            into('schemas') {
+                from 'schemas'
+            }
+            into('sample') {
+                from 'sample'
+            }
+            into('license') {
+                from 'LICENSE'
+            }
+        }
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.4.1'
+}

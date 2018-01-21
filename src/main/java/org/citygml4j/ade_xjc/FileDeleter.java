@@ -32,17 +32,17 @@ public class FileDeleter extends SimpleFileVisitor<Path> {
 	private boolean recursive;
 	private boolean onlyEmptyDirs;
 
-	public FileDeleter(boolean recursive) {
+	FileDeleter(boolean recursive) {
 		this(recursive, false);
 	}
 	
-	public FileDeleter(boolean recursive, boolean onlyEmptyDirs) {
+	FileDeleter(boolean recursive, boolean onlyEmptyDirs) {
 		this.recursive = recursive;
 		this.onlyEmptyDirs = onlyEmptyDirs;
 	}
 
-	boolean deleteFile(Path file) throws IOException {
-		return Files.deleteIfExists(file);
+	private void deleteFile(Path file) throws IOException {
+		Files.deleteIfExists(file);
 	}
 
 	@Override
@@ -54,7 +54,7 @@ public class FileDeleter extends SimpleFileVisitor<Path> {
 	}
 
 	@Override
-	public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {		
+	public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) {
 		return FileVisitResult.CONTINUE;
 	}
 
@@ -77,7 +77,7 @@ public class FileDeleter extends SimpleFileVisitor<Path> {
 	}
 
 	@Override
-	public FileVisitResult visitFileFailed(Path file, IOException exc) throws IOException {
+	public FileVisitResult visitFileFailed(Path file, IOException exc) {
 		return FileVisitResult.CONTINUE;
 	}
 

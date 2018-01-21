@@ -1,2 +1,2 @@
-# Always convert line endings of files in schemas folder
-/schemas/* text eol=crlf
+# Always convert line endings of schema files
+/resources/schemas/* text eol=crlf

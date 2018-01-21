@@ -141,7 +141,7 @@ public class ADESchemaCompiler {
 			if (!adeSchemaFile.isAbsolute())
 				adeSchemaFile = workDir.resolve(adeSchemaFile);
 
-			if (!adeBindingFile.isAbsolute())
+			if (adeBindingFile != null && !adeBindingFile.isAbsolute())
 				adeBindingFile = workDir.resolve(adeBindingFile);
 
 			if (!outputFolder.isAbsolute())

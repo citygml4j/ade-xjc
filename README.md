@@ -30,7 +30,7 @@ ade-xjc requires Java 8 or higher. The project uses [Gradle](https://gradle.org/
 This will create a folder `build/install/ade-xjc` with the following subfolders:
 * `bin` -- start scripts for running ade-xjc
 * `jaxb-plugins` -- optional JAXB plugins that can be used in the schema compilation
-* `lib` -- the ade-xjc library and its mandatory dependencies
+* `lib` -- the ade-xjc JAR file and its mandatory dependencies
 * `license` -- license information
 * `sample` -- a sample CityGML ADE that you may use for testing
 * `schemas` -- the official CityGML, GML and xAL schemas

@@ -51,7 +51,7 @@ To control the compilation process, ade-xjc offers the following program argumen
 |`-non-strict` | Per default, ade-xjc terminates with an error if the content of the `schemas` subfolder has been changed in order to ensure deterministic compilation results; use this argument to force ade-xjc to continue
 |`-clean` | Cleans the output folder before compilation
 |`-version, -v` | Prints version information to the console
-|`-hhelp`, `-h` | Prints a help message to the console
+|`-help`, `-h` | Prints a help message to the console
 
 Note that the ade-xjc binding compiler requires that your ADE schema points to the official CityGML and GML schemas provided in the subfolder `schemas`. So please adapt all `<xs:import>` statements in your ADE schema accordingly before launching ade-xjc.
 

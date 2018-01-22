@@ -15,8 +15,6 @@ The latest stable release of ade-xjc is 2.6.0.
 
 Download the ade-xjc 2.6.0 release binariers [here](https://github.com/citygml4j/ade-xjc/releases/download/v2.6.0/ade-xjc-2.6.0.zip). Previous releases are available from the [releases section](https://github.com/citygml4j/ade-xjc/releases).
 
-Note that ade-xjc is also bundled with citygml4j.
-
 Contributing
 ------------
 * To file bugs found in the software create a GitHub issue.
@@ -25,13 +23,14 @@ Contributing
 
 Building
 --------
-ade-xjc depends on JRE 8. The project uses [Apache Ant](http://ant.apache.org/) as build tool. To build the program, run the `build.xml` file from the root of the repository with `dist` as target. 
+ade-xjc requires Java 8 or higher. The project uses [Gradle](https://gradle.org/) as build system. To build the program from source, run the following command from the root of the repository. 
 
-    % ant dist
+    % gradlew installDist
 
-This will create a folder `ade-xjc-<version>` containing the `ade-xjc.jar` executable and the following subfolders:
+This will create a folder `build/install/ade-xjc` with the following subfolders:
+* `bin` -- start scripts for running ade-xjc
 * `jaxb-plugins` -- optional JAXB plugins that can be used in the schema compilation
-* `lib` -- mandatory dependencies of ade-xjc
+* `lib` -- the ade-xjc library and its mandatory dependencies
 * `license` -- license information
 * `sample` -- a sample CityGML ADE that you may use for testing
 * `schemas` -- the official CityGML, GML and xAL schemas

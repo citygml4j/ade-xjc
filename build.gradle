@@ -46,11 +46,11 @@ startScripts {
 distributions.main.contents {
     from('resources/doc/README') {
         filter(ReplaceTokens, tokens: [
-                version          : project.version,
-                date             : date.format('yyy-MM-dd'),
-                copyright        : date.format('yyyy'),
+                version: project.version,
+                date: date.format('yyy-MM-dd'),
+                copyright: date.format('yyyy'),
                 javaCompatibility: sourceCompatibility.toString(),
-                jar              : jar.archiveName
+                jar: jar.archiveName
         ])
     }
     into('jaxb-plugins') {

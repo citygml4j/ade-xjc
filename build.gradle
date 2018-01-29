@@ -43,31 +43,27 @@ startScripts {
     }
 }
 
-distributions {
-    main {
-        contents {
-            from('resources/doc/README') {
-                filter(ReplaceTokens, tokens: [
-                        version: project.version,
-                        date: date.format('yyy-MM-dd'),
-                        copyright: date.format('yyyy'),
-                        javaCompatibility: sourceCompatibility.toString(),
-                        jar: jar.archiveName
-                ])
-            }
-            into('jaxb-plugins') {
-                from 'jaxb-plugins'
-            }
-            into('schemas') {
-                from 'schemas'
-            }
-            into('sample') {
-                from 'sample'
-            }
-            into('license') {
-                from 'LICENSE'
-            }
-        }
+distributions.main.contents {
+    from('resources/doc/README') {
+        filter(ReplaceTokens, tokens: [
+                version          : project.version,
+                date             : date.format('yyy-MM-dd'),
+                copyright        : date.format('yyyy'),
+                javaCompatibility: sourceCompatibility.toString(),
+                jar              : jar.archiveName
+        ])
+    }
+    into('jaxb-plugins') {
+        from 'jaxb-plugins'
+    }
+    into('schemas') {
+        from 'schemas'
+    }
+    into('sample') {
+        from 'sample'
+    }
+    into('license') {
+        from 'LICENSE'
     }
 }
 

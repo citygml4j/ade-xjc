@@ -199,8 +199,8 @@ public class ADESchemaCompiler {
 			sc.setErrorListener(listener);
 
 			log(LogLevel.INFO, "Generating JAXB classes. This may take some time...");
-			sc.parseSchema(new InputSource(schemaDir.resolve("CityGML").resolve("citygml4j_profile.xsd").toUri().toString()));
-			sc.parseSchema(new InputSource(schemaDir.resolve("CityGML").resolve("binding.xjb").toUri().toString()));
+			sc.parseSchema(new InputSource(schemaDir.resolve("citygml4j.xsd").toUri().toString()));
+			sc.parseSchema(new InputSource(schemaDir.resolve("binding.xjb").toUri().toString()));
 			sc.parseSchema(new InputSource(adeSchemaFile.toUri().toString()));
 
 			if (adeBindingFile != null)
@@ -284,7 +284,7 @@ public class ADESchemaCompiler {
 			BigInteger md5 = new BigInteger("0");
 			md5 = Util.dir2md5(schemaDir.toFile(), md5);
 
-			if (!md5.toString(16).equals("64fffffdb208ef0382a769611d2ab54"))
+			if (!md5.toString(16).equals("94af5d7979d484146bc32810ab6c1577"))
 				throw new Exception("Contents of subfolder 'schemas' have been altered. Please restore its original state.");
 		}
 

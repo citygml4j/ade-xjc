@@ -37,7 +37,6 @@ import org.kohsuke.args4j.Option;
 import org.kohsuke.args4j.ParserProperties;
 import org.xml.sax.InputSource;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintStream;
@@ -282,9 +281,9 @@ public class ADESchemaCompiler {
 			log(LogLevel.INFO, "Running in strict mode. Checking sanity of subfolder 'schemas'");
 
 			BigInteger md5 = new BigInteger("0");
-			md5 = Util.dir2md5(schemaDir.toFile(), md5);
+			md5 = Util.dir2md5(schemaDir, md5);
 
-			if (!md5.toString(16).equals("94af5d7979d484146bc32810ab6c1577"))
+			if (!md5.toString(16).equals("bb750e0a6e76c779637ebc2dc983253a"))
 				throw new Exception("Contents of subfolder 'schemas' have been altered. Please restore its original state.");
 		}
 

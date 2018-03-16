@@ -1,7 +1,7 @@
 import org.apache.tools.ant.filters.ReplaceTokens
 
 group 'org.citygml4j'
-version '2.6.1'
+version '2.6.2'
 
 apply plugin: 'java'
 apply plugin: 'application'

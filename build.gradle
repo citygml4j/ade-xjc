@@ -6,7 +6,7 @@ plugins {
 }
 
 group 'org.citygml4j'
-version '2.7.0'
+version '2.8.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
 mainClassName = 'org.citygml4j.ade_xjc.ADESchemaCompiler'

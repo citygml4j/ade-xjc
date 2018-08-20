@@ -1,16 +1,18 @@
 import org.apache.tools.ant.filters.ReplaceTokens
 
+plugins {
+    id 'java'
+    id 'application'
+}
+
 group 'org.citygml4j'
 version '2.7.0'
-
-apply plugin: 'java'
-apply plugin: 'application'
 
 sourceCompatibility = 1.8
 mainClassName = 'org.citygml4j.ade_xjc.ADESchemaCompiler'
 
 repositories {
-    mavenCentral()
+    jcenter()
 }
 
 ext {
@@ -65,8 +67,4 @@ distributions.main.contents {
     into('license') {
         from 'LICENSE'
     }
-}
-
-task wrapper(type: Wrapper) {
-    gradleVersion = '4.5.1'
 }

@@ -25,7 +25,7 @@ Building
 --------
 ade-xjc requires Java 8 or higher. The project uses [Gradle](https://gradle.org/) as build system. To build the program from source, run the following command from the root of the repository. 
 
-    % gradlew installDist
+    > gradlew installDist
 
 This will create a folder `build/install/ade-xjc` with the following subfolders:
 * `bin` -- start scripts for running ade-xjc
@@ -39,7 +39,7 @@ Compiling a CityGML ADE Schema
 ------------------------------
 ade-xjc is a command line tool. In order to launch it, open a shell environment and navigate to the `bin` folder. This folder contains the two start scripts `ade-xjc.bat` and `ade-xjc` targeted at Microsoft Windows environments and UNIX-like environments (e.g. Linux, macOS). The command below exemplifies how to run ade-xjc to compile the ADE Schema `CityGMLADE.xsd` to JAXB classes.
 
-    % ade-xjc /home/user/ade/CityGMLADE.xsd
+    > ade-xjc /home/user/ade/CityGMLADE.xsd
 
 To control the compilation process, ade-xjc offers the following program arguments.
 
@@ -65,7 +65,7 @@ The following JAXB plugins are already included and shipped with ade-xjc:
 
 For example, if you want to augment your generated JAXB classes with setters for collections then you can use the `Setters Plugin` of the JAXB2 Basics Plugins project. This plugin is activated by the `-Xsetters` command line option and is documented [here](https://github.com/highsource/jaxb2-basics/wiki/JAXB2-Setters-Plugin). The following example shows how use this plugin with ade-xjc.
 
-    % ade-xjc -Xsetters -Xsetters-mode=direct /home/user/ade/CityGMLADE.xsd
+    > ade-xjc -Xsetters -Xsetters-mode=direct /home/user/ade/CityGMLADE.xsd
 
 
 Sample ADE Schema compilation
@@ -74,7 +74,7 @@ ade-xjc provides the sample CityGML ADE Schema `CityGML-SubsurfaceADE-0_9_0.xsd`
 
 From within the `sample` folder, launch ade-xjc with the following command.
 
-    % ../bin/ade-xjc -clean -binding binding.xjb -output src-gen -package ade.sub.jaxb CityGML-SubsurfaceADE-0_9_0.xsd
+    > ../bin/ade-xjc -clean -binding binding.xjb -output src-gen -package ade.sub.jaxb CityGML-SubsurfaceADE-0_9_0.xsd
 
 This will compile the `CityGML-SubsurfaceADE-0_9_0.xsd` schema to JAXB classes that are generated in the folder `sample/src-gen`. For convience, two `run-sample` start scripts are provided in the `sample` folder to run ade-xjc with the above settings under Windows or UNIX-like environments. 
 
@@ -88,7 +88,7 @@ Since [citygml4j 2.5.0](https://github.com/citygml4j/citygml4j/releases/tag/v2.5
 
 Note that you need to check which version of citygml4j is supposed by your version of ade-xjc. Use the following command to find out.
 
-    % ade-xjc -version
+    > ade-xjc -version
 
 The output will look similar to this:
 

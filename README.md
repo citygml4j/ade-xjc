@@ -13,7 +13,7 @@ Latest release
 --------------
 The latest stable release of ade-xjc is 2.8.0.
 
-Download the ade-xjc 2.8.0 release binariers [here](https://github.com/citygml4j/ade-xjc/releases/download/v2.8.0/ade-xjc-2.8.0.zip). Previous releases are available from the [releases section](https://github.com/citygml4j/ade-xjc/releases).
+Download the ade-xjc 2.8.0 release binaries [here](https://github.com/citygml4j/ade-xjc/releases/download/v2.8.0/ade-xjc-2.8.0.zip). Previous releases are available from the [releases section](https://github.com/citygml4j/ade-xjc/releases).
 
 Contributing
 ------------

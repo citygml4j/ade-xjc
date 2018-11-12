@@ -21,7 +21,7 @@ ext {
 
 dependencies {
     implementation 'args4j:args4j:2.33'
-    implementation 'com.sun.xml.bind:jaxb-jxc:2.2.7'
+    implementation 'org.glassfish.jaxb:jaxb-xjc:2.3.1'
 }
 
 jar {

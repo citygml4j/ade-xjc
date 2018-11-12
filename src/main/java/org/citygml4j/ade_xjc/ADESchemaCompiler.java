@@ -186,6 +186,8 @@ public class ADESchemaCompiler {
 						if (('-' + plugin.getOptionName()).equals(pluginArgs[i])) {
 							log(LogLevel.INFO, "Found JAXB plugin for option '-" + plugin.getOptionName() + "'");
 							options.activePlugins.add(plugin);
+							options.pluginURIs.addAll(plugin.getCustomizationURIs());
+							options.getAllPlugins().add(plugin);
 							plugin.onActivated(options);
 						}
 

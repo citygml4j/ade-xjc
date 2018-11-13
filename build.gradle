@@ -52,7 +52,7 @@ distributions.main.contents {
                 date: date.format('yyyy-MM-dd'),
                 copyright: date.format('yyyy'),
                 javaCompatibility: sourceCompatibility.toString(),
-                jar: jar.archiveName
+                appName: project.name
         ])
     }
     into('jaxb-plugins') {

@@ -1,4 +1,4 @@
-ade-xjc - XML Schema binding compiler for CityGML ADEs
+@appName@ - XML Schema binding compiler for CityGML ADEs
 
 Version @version@ (@date@)
 
@@ -24,7 +24,7 @@ Version @version@ (@date@)
 1. License
 ----------
 
-ade-xjc is licensed under the Apache License, Version 2.0 (the "License");
+@appName@ is licensed under the Apache License, Version 2.0 (the "License");
 you may not use this library except in compliance with the License.
 You may obtain a copy of the License at
 
@@ -41,42 +41,51 @@ Claus Nagel <claus.nagel@gmail.com>
 3. About
 --------
 
-ade-xjc is a command line tool and wrapper for the XML Schema binding compiler
-xjc shipped with JAXB. ade-xjc compiles an arbitrary CityGML ADE Schema
+@appName@ is a command line tool and wrapper for the XML Schema binding compiler
+xjc shipped with JAXB. @appName@ compiles an arbitrary CityGML ADE Schema
 to a set of corresponding JAXB classes to be used with citygml4j. 
 
-ade-xjc ensures that the resulting JAXB classes are correctly derived from
-and related to the CityGML, GML and xAL JAXB classes shipped with citygml4j,
-and thus that they can be directly used with the citygml4j library. The citygml4j
+@appName@ ensures that the resulting JAXB classes are correctly derived from and
+related to the CityGML, GML and xAL JAXB classes shipped with citygml4j, and
+thus that they can be directly used with the citygml4j library. The citygml4j
 library needs to be on your classpath in order to use the generated classes
 in your application.
 
-ade-xjc is part of the citygml4j project.
+@appName@ is part of the citygml4j project.
 
 
 4. System requirements
 ----------------------
 
-* Java JRE or JDK >= @javaCompatibility@ to launch the ade-xjc binding compiler
+* Java JRE or JDK >= @javaCompatibility@ to launch the @appName@ binding compiler
 * citygml4j v@version@ to use the generated JAXB classes
 
 
 5. How to use it
 ----------------
 
-ade-xjc is a command line tool. In order to get a list of supported
-arguments, invoke the tool in a shell environment:
+@appName@ is a command line tool. Use the start scripts to launch the
+application. The start scripts are located in the "bin" folder of the
+installation directory.
 
-  % java -jar @jar@ -help
+Please execute the start script suitable for your platform:
+- @appName@.bat   (Microsoft Windows family)
+- @appName@       (UNIX/Linux family, macOS)
 
-The ade-xjc compiler requires that your ADE schema points to the official
+To get a list of supported arguments, open a shell environment, change
+directory to the installation directory of @appName@, and invoke to following
+command.
+
+  % bin\@appName@ -help
+
+The @appName@ compiler requires that your ADE schema points to the official
 CityGML and GML schemas provided in the subfolder "schemas". So please 
 adapt all <xs:import> statements in your ADE schema accordingly before 
-invoking the ade-xjc compiler.
+invoking the @appName@ compiler.
 
-A sample ADE schema together with an ANT build.xml file is provided in the
-subfolder "sample". Simply run the build.xml with Ant using the default
-target to compile the sample ADE to JAXB classes.
+A sample ADE schema together with "run-sample" start scripts is provided in
+the subfolder "sample". Simply run the start script for your platform to
+compile the sample ADE to JAXB classes.
 
    
 6. Developers
@@ -94,7 +103,7 @@ claus.nagel@gmail.com
 8. Websites
 -----------
 
-Official ade-xjc website:
+Official @appName@ website:
 https://github.com/citygml4j/
 
 Related websites:

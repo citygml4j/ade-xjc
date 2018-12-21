@@ -285,7 +285,7 @@ public class ADESchemaCompiler {
 			BigInteger md5 = new BigInteger("0");
 			md5 = Util.dir2md5(schemaDir, md5);
 
-			if (!md5.toString(16).equals("bb750e0a6e76c779637ebc2dc983253a"))
+			if (!md5.toString(16).equals("e63ab0fde528fbafc380af37b792e914"))
 				throw new Exception("Contents of subfolder 'schemas' have been altered. Please restore its original state.");
 		}
 

@@ -111,7 +111,7 @@ public class ADESchemaCompiler {
 
 		if (version) {
 			System.out.println(getClass().getPackage().getImplementationTitle() + " version " + getClass().getPackage().getImplementationVersion());
-			System.out.println("XML Schema binding compiler for CityGML ADEs; use with citygml4j version " + getClass().getPackage().getImplementationVersion());
+			System.out.println("XML Schema binding compiler for CityGML ADEs; use with citygml4j version " + getClass().getPackage().getSpecificationVersion());
 			System.exit(0);
 		}
 

@@ -1,17 +1,17 @@
 /*
  * ade-xjc - XML Schema binding compiler for CityGML ADEs
  * https://github.com/citygml4j/ade-xjc
- * 
+ *
  * ade-xjc is part of the citygml4j project
- * 
- * Copyright 2013-2017 Claus Nagel <claus.nagel@gmail.com>
+ *
+ * Copyright 2013-2019 Claus Nagel <claus.nagel@gmail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- *     
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -285,7 +285,7 @@ public class ADESchemaCompiler {
 			BigInteger md5 = new BigInteger("0");
 			md5 = Util.dir2md5(schemaDir, md5);
 
-			if (!md5.toString(16).equals("e63ab0fde528fbafc380af37b792e914"))
+			if (!md5.toString(16).equals("ad78f553a5a8082a44ceca8f66b3dc3b"))
 				throw new Exception("Contents of subfolder 'schemas' have been altered. Please restore its original state.");
 		}
 

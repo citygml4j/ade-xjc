@@ -6,17 +6,18 @@ plugins {
 }
 
 group 'org.citygml4j'
-version '2.9.0'
+version '2.9.1'
 
-sourceCompatibility = 1.8
-mainClassName = 'org.citygml4j.ade_xjc.ADESchemaCompiler'
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+}
 
 repositories {
-    jcenter()
+    mavenCentral()
 }
 
 ext {
-    citygml4jVersion = '2.9.0'
+    citygml4jVersion = '2.11.3'
     date = new Date()
 }
 
@@ -30,20 +31,27 @@ jar {
         attributes('Implementation-Title': project.name,
                 'Implementation-Version': project.version,
                 'Specification-Version': citygml4jVersion,
-                'Main-Class': mainClassName)
-    }
-    into('META-INF') {
-        from 'LICENSE'
+                'Main-Class': application.mainClass,
+                'Class-Path': configurations.runtimeClasspath.collect{ it.name }.join(' ')
+        )
+        into('META-INF') {
+            from 'LICENSE'
+        }
     }
 }
 
-startScripts {
-    defaultJvmOpts = ['-Djavax.xml.accessExternalSchema=file']
-    doLast {
-        def windowsScript = getWindowsScript()
-        def unixScript = getUnixScript()
-        windowsScript.text = windowsScript.text.replaceFirst('set APP_HOME=.*', '$0\r\nset WORKING_DIR=%CD%')
-        unixScript.text = unixScript.text.replaceFirst('APP_HOME=.*', '$0\nexport APP_HOME\nexport WORKING_DIR=\\$SAVED')
+application {
+    mainClass = 'org.citygml4j.ade_xjc.ADESchemaCompiler'
+    executableDir = ''
+
+    startScripts {
+        defaultJvmOpts = ['-Djavax.xml.accessExternalSchema=file']
+        doLast {
+            def windowsScript = getWindowsScript()
+            def unixScript = getUnixScript()
+            windowsScript.text = windowsScript.text.replaceFirst('set APP_HOME=.*', '$0\r\nset WORKING_DIR=%CD%')
+            unixScript.text = unixScript.text.replaceFirst('APP_HOME=.*', '$0\nexport APP_HOME\nexport WORKING_DIR=\\$SAVED')
+        }
     }
 }
 

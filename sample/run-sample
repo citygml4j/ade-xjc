@@ -11,4 +11,4 @@ PACKAGE="ade.sub.jaxb"
 BINDING="binding.xjb"
 SCHEMA="CityGML-SubsurfaceADE-0_9_0.xsd"
 
-exec ../bin/ade-xjc -clean -output $OUTPUT -package $PACKAGE -binding $BINDING $SCHEMA
+exec ../ade-xjc -clean -output $OUTPUT -package $PACKAGE -binding $BINDING $SCHEMA

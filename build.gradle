@@ -62,7 +62,8 @@ distributions.main.contents {
                 date: date.format('yyyy-MM-dd'),
                 copyright: date.format('yyyy'),
                 javaCompatibility: sourceCompatibility.toString(),
-                appName: project.name
+                appName: project.name,
+                citygml4jVersion: citygml4jVersion
         ])
     }
     into('jaxb-plugins') {

@@ -58,14 +58,14 @@ in your application.
 ----------------------
 
 * Java JRE or JDK >= @javaCompatibility@ to launch the @appName@ binding compiler
-* citygml4j v@version@ to use the generated JAXB classes
+* citygml4j v@citygml4jVersion@ to use the generated JAXB classes
 
 
 5. How to use it
 ----------------
 
 @appName@ is a command line tool. Use the start scripts to launch the
-application. The start scripts are located in the "bin" folder of the
+application. The start scripts are located in the root folder of the
 installation directory.
 
 Please execute the start script suitable for your platform:
@@ -76,7 +76,7 @@ To get a list of supported arguments, open a shell environment, change
 directory to the installation directory of @appName@, and invoke to following
 command.
 
-  % bin\@appName@ -help
+  % @appName@ -help
 
 The @appName@ compiler requires that your ADE schema points to the official
 CityGML and GML schemas provided in the subfolder "schemas". So please 

@@ -3,7 +3,12 @@ ade-xjc
 
 ade-xjc is a command line tool and wrapper for the XML Schema binding compiler `xjc` shipped with
 [JAXB](https://jaxb.java.net/). ade-xjc compiles arbitrary CityGML Application Domain Extension (ADE) schemas
-to a set of corresponding JAXB classes to be used with [citygml4j](https://github.com/citygml4j/citygml4j).
+to a set of corresponding JAXB classes to be used with [citygml4j v2](https://github.com/citygml4j/citygml4j/tree/citygml4j-v2).
+
+**NOTE:** ade-xjc is in **maintenance mode** with no significant active development planned. It is not updated
+with new features but at most receives critical bug fixes. ade-xjc is intended to be used with citygml4j v2.
+The latest [citygml4j v3](https://github.com/citygml4j/citygml4j) is not based on JAXB anymore but uses
+[xml-objects](https://github.com/xmlobjects/xml-objects) instead. So, ade-xjc is not required anymore.
 
 License
 -------
@@ -100,7 +105,7 @@ with the above settings under Windows or UNIX-like environments.
 
 Using the generated JAXB classes
 --------------------------------
-ade-xjc is designed to be used with citygml4j. During compilation of the ADE Schema, ade-xjc ensures that the
+ade-xjc is designed to be used with citygml4j v2. During compilation of the ADE Schema, ade-xjc ensures that the
 resulting JAXB classes perfectly combine with the JAXB classes that are shipped with citygml4j and that map the
 official CityGML, GML and xAL schemas. As a consequence, the citygml4j library needs to be on your classpath in
 order to use the generated JAXB classes.
